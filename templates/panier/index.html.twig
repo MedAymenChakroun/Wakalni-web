@@ -1,0 +1,47 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Panier index{% endblock %}
+
+{% block body %}
+    <h1>Panier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nomproduit</th>
+                <th>Quantite</th>
+                <th>Typeprod</th>
+                <th>Prixprod</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for panier in paniers %}
+            <tr>
+                <td>{{ panier.nomproduit }}</td>
+                <td>{{ panier.quantite }}</td>
+                <td>{{ panier.typeprod }}</td>
+                <td>{{ panier.prixprod }}</td>
+                <td>{{ panier.quantite * panier.prixprod }}</td>
+                <td>
+                    <a href="{{ path('app_panier_delete', {'panierid': panier.panierid}) }}" class="btn btn-danger btn-sm">supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        {# </tfoot>
+        <tr>
+            <td colspan="3">Total :
+            </td>
+            <td>{{ total }}</td>
+            <td></td>
+        </tr>
+        </tfoot> #}
+    </table>
+
+    <a href="{{ path('app_panier_new') }}">Create new</a>
+{% endblock %}
