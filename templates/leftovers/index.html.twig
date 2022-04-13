@@ -1,0 +1,41 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Leftovers index{% endblock %}
+
+{% block body %}
+    <h1>Leftovers index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Leftoverid</th>
+                <th>Sujet</th>
+                <th>Type</th>
+                <th>Quantite</th>
+                <th>Dateexpiration</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for leftover in leftovers %}
+            <tr>
+                <td>{{ leftover.leftoverid }}</td>
+                <td>{{ leftover.sujet }}</td>
+                <td>{{ leftover.type }}</td>
+                <td>{{ leftover.quantite }}</td>
+                <td>{{ leftover.dateexpiration ? leftover.dateexpiration|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_leftovers_show', {'leftoverid': leftover.leftoverid}) }}">show</a>
+                    <a href="{{ path('app_leftovers_edit', {'leftoverid': leftover.leftoverid}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_leftovers_new') }}">Create new</a>
+{% endblock %}
