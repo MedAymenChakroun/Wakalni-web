@@ -1,0 +1,36 @@
+{% extends 'base-front.html.twig' %}
+{% block title %}Offre index{% endblock %}
+{% block body %}
+    <h1>Offre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Offreid</th>
+                <td>{{ offre.offreid }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ offre.nom }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ offre.type }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ offre.prix }}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{{ offre.datefin ? offre.datefin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_offre_index') }}">back to list</a>
+
+    <a href="{{ path('app_offre_edit', {'offreid': offre.offreid}) }}">edit</a>
+
+    {{ include('offre/_delete_form.html.twig') }}
+{% endblock %}
