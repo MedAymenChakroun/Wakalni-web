@@ -2,7 +2,7 @@
 {% block title %}Produit index
 {% endblock %}
 {% block body %}
-	<h1>Produit index</h1>
+	<h1>Liste de produit</h1>
 
 	{# <table class="table">
 	        <thead>
@@ -36,30 +36,34 @@
 
 
 	<div class="row">
-		<div class="col-md-12">
+		{# <div class="col-md-12">
 			<p class="text-roboto-light">30 Products in Category
 				<strong>Healthy</strong>
 			</p>
-		</div>
+		</div> #}
 
-			<div class="caption box">
+			<div class="caption box" style="background-color: unset !important">
                 {% for produit in produits %}
-				<div class="col-sm-4 col-md-4">
-					<a href="productDetail.html" class="thumbnail_item thumbnail less-padding less-margin">
+				<div class="col-sm-2 col-md-3">
+					<a href="#" class="thumbnail thumbnail_item less-padding less-margin" style="background-color: unset !important">
 						<img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/30/11/62/makloub-our-specialty.jpg" alt="risotto lemon">
 					</a>
-					<h3>{{ produit.produitid }}</h3>
-					<div class="row">
-						<div class="col-sm-8 col-xs-6">
-							<p class="default-userProductList-CardList-price">{{ produit.nom }}</p>
+					<div class="row" style="margin-right: unset !important; margin-left: unset !important">
+						<div class="col-sm-6 col-md-6">
+					<h2 style="margin-top: -1px !important">{{ produit.nom }}</h2>
+							<p class="default-userProductList-CardList-price">{{ produit.type }}</p>
 							<span class="min-order">{{ produit.prix }}</span>
 						</div>
 
-						<div class="col-sm-4 col-xs-6">
-							<button onclick="location.href='shoppingCart.html'" class="btn default-userProductList-CardList-button pull-right" role="button">test add button</button>
+						<div class="col-sm-6 col-xs-6">
+							<button onclick="#location.href='shoppingCart.html'" class="btn default-userProductList-CardList-button pull-right" role="button" style="margin-top: 20px !important">test add button</button>
 						</div>
 					</div>
 				</div>
+                 {% else %}
+	            <div>
+	                <p>no products found</p>
+	            </div>
                 {% endfor %}
 		
 		</div>
