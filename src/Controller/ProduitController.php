@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Produit;
+use App\Entity\Utilisateur;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route("/produit")
@@ -50,14 +52,15 @@ class ProduitController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{produitid}", name="app_produit_show", methods={"GET"})
      */
     public function show(Produit $produit): Response
-    {
+    {   
+       
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
+            
         ]);
     }
 
@@ -93,4 +96,30 @@ class ProduitController extends AbstractController
 
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/{produitid}", name="app_produit_show", methods={"GET"})
+     */
+    // public function test($produitid)
+    // {
+    //     $em = $this->getDoctrine()->getManager();
+    //     // $RAW_QUERY = "SELECT u.nom FROM `utilisateur` u, `produit` p WHERE u.id=p.crid AND p.crid=$produitid;";
+    //     $statement = $this->$em->prepare("SELECT u.nom FROM `utilisateur` u, `produit` p WHERE u.id=p.crid AND p.crid=$produitid");
+    //     $statement->execute();
+    //     $result = $statement->fetchAll();
+    //     return $this->render('produit/show.html.twig', [
+    //         'result' => $result,
+    //     ]);
+    // }
+
+
+    // public function test(Utilisateur $Utilisateur): Response
+    // {
+    //     $connection = $this->getDoctrine()->getManager();
+    //             $query = "SELECT u.nom FROM `utilisateur` u, `produit` p WHERE u.id=p.crid AND p.crid=1;";
+        // return $this->render('produit/show.html.twig', [
+        //     'chef' => $Utilisateur,
+        // ]);
+    // }
+
 }
