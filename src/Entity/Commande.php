@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commande
  *
- * @ORM\Table(name="commande", indexes={@ORM\Index(name="fklivreur", columns={"livreurid"}), @ORM\Index(name="fkrc", columns={"rcid"}), @ORM\Index(name="fkpanier", columns={"panierid"}), @ORM\Index(name="fkclient", columns={"clientid"})})
+ * @ORM\Table(name="commande", indexes={@ORM\Index(name="fkpanier", columns={"panierid"}), @ORM\Index(name="fkclient", columns={"clientid"}), @ORM\Index(name="fklivreur", columns={"livreurid"}), @ORM\Index(name="fkrc", columns={"rcid"})})
  * @ORM\Entity
  */
 class Commande
@@ -64,6 +64,16 @@ class Commande
     private $nomresto;
 
     /**
+     * @var \Panier
+     *
+     * @ORM\ManyToOne(targetEntity="Panier")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="panierid", referencedColumnName="panierid")
+     * })
+     */
+    private $panierid;
+
+    /**
      * @var \Utilisateur
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
@@ -92,16 +102,6 @@ class Commande
      * })
      */
     private $rcid;
-
-    /**
-     * @var \Panier
-     *
-     * @ORM\ManyToOne(targetEntity="Panier")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="panierid", referencedColumnName="panierid")
-     * })
-     */
-    private $panierid;
 
     public function getCommandeid(): ?int
     {
@@ -180,6 +180,18 @@ class Commande
         return $this;
     }
 
+    public function getPanierid(): ?Panier
+    {
+        return $this->panierid;
+    }
+
+    public function setPanierid(?Panier $panierid): self
+    {
+        $this->panierid = $panierid;
+
+        return $this;
+    }
+
     public function getClientid(): ?Utilisateur
     {
         return $this->clientid;
@@ -215,18 +227,12 @@ class Commande
 
         return $this;
     }
-
-    public function getPanierid(): ?Panier
+    public function __toString()
     {
-        return $this->panierid;
+        return $this->commandeid;
     }
 
-    public function setPanierid(?Panier $panierid): self
-    {
-        $this->panierid = $panierid;
 
-        return $this;
-    }
 
 
 }

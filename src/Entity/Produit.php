@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Produit
  *
  * @ORM\Table(name="produit", indexes={@ORM\Index(name="fkcrp", columns={"crid"})})
- * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
+ * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Produit
 {
@@ -42,6 +44,15 @@ class Produit
      */
     private $prix;
 
+     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="products")
+     * 
+     * @var File|null
+     */
+    private $image;
+
     /**
      * @var \Utilisateur
      *
@@ -51,6 +62,20 @@ class Produit
      * })
      */
     private $crid;
+     /**
+     * @ORM\Column(type="string")
+     *
+     * @var string|null
+     */
+    private $imageName;
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
 
     public function getProduitid(): ?int
     {
@@ -93,6 +118,22 @@ class Produit
         return $this;
     }
 
+    public function setImage(?File $image = null): void
+    {
+        $this->image = $image;
+
+        // if (null !== $imageFile) {
+        //     // It is required that at least one field changes if you are using doctrine
+        //     // otherwise the event listeners won't be called and the file is lost
+        //     $this->updatedAt = new \DateTimeImmutable();
+        // }
+    }
+
+    public function getImage(): ?File
+    {
+        return $this->image;
+    }
+
     public function getCrid(): ?Utilisateur
     {
         return $this->crid;
@@ -104,10 +145,12 @@ class Produit
 
         return $this;
     }
+
     public function __toString()
     {
         return $this->nom;
     }
+
 
 
 

@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Panier
  *
- * @ORM\Table(name="panier", indexes={@ORM\Index(name="fkoffrep", columns={"offreid"}), @ORM\Index(name="fkproduit", columns={"produitid"}), @ORM\Index(name="fkclientp", columns={"clientid"})})
- * @ORM\Entity(repositoryClass="App\Repository\PanierRepository")
+ * @ORM\Table(name="panier", indexes={@ORM\Index(name="fkclientp", columns={"clientid"}), @ORM\Index(name="fkoffrep", columns={"offreid"}), @ORM\Index(name="fkproduit", columns={"produitid"})})
+ * @ORM\Entity
  */
 class Panier
 {
@@ -31,23 +30,14 @@ class Panier
 
     /**
      * @var string
-     * @Assert\NotBlank(message="must not be empty")
-     * @Assert\Length(
-     *      min = 3,
-     *      max = 11,
-     *      minMessage = "doit etre >=3 ",
-     *      maxMessage = "doit etre <=11" )
+     *
      * @ORM\Column(name="nomproduit", type="string", length=11, nullable=false)
      */
     private $nomproduit;
 
     /**
      * @var string
-     * @Assert\Length(
-     *       min = 3,
-     *       max = 11,
-     *       minMessage = "doit etre >=3 ",
-     *       maxMessage = "doit etre <=11" )
+     *
      * @ORM\Column(name="typeprod", type="string", length=11, nullable=false)
      */
     private $typeprod;
@@ -58,6 +48,16 @@ class Panier
      * @ORM\Column(name="prixprod", type="float", precision=10, scale=0, nullable=false)
      */
     private $prixprod;
+
+    /**
+     * @var \Produit
+     *
+     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produitid", referencedColumnName="produitid")
+     * })
+     */
+    private $produitid;
 
     /**
      * @var \Utilisateur
@@ -78,16 +78,6 @@ class Panier
      * })
      */
     private $offreid;
-
-    /**
-     * @var \Produit
-     *
-     * @ORM\ManyToOne(targetEntity="Produit")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="produitid", referencedColumnName="produitid")
-     * })
-     */
-    private $produitid;
 
     public function getPanierid(): ?int
     {
@@ -142,6 +132,18 @@ class Panier
         return $this;
     }
 
+    public function getProduitid(): ?Produit
+    {
+        return $this->produitid;
+    }
+
+    public function setProduitid(?Produit $produitid): self
+    {
+        $this->produitid = $produitid;
+
+        return $this;
+    }
+
     public function getClientid(): ?Utilisateur
     {
         return $this->clientid;
@@ -165,22 +167,11 @@ class Panier
 
         return $this;
     }
-
-    public function getProduitid(): ?Produit
-    {
-        return $this->produitid;
-    }
-
-    public function setProduitid(?Produit $produitid): self
-    {
-        $this->produitid = $produitid;
-
-        return $this;
-    }
     public function __toString()
     {
         return $this->nomproduit;
     }
+
 
 
 }
