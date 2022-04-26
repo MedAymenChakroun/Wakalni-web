@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Produit
  *
  * @ORM\Table(name="produit", indexes={@ORM\Index(name="fkcrp", columns={"crid"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  */
 class Produit
 {
@@ -104,10 +104,10 @@ class Produit
 
         return $this;
     }
-    // public function __toString()
-    // {
-    //     return $this->nomproduit;
-    // }
+    public function __toString()
+    {
+        return $this->nom;
+    }
 
 
 

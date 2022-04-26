@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Panier
  *
  * @ORM\Table(name="panier", indexes={@ORM\Index(name="fkoffrep", columns={"offreid"}), @ORM\Index(name="fkproduit", columns={"produitid"}), @ORM\Index(name="fkclientp", columns={"clientid"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PanierRepository")
  */
 class Panier
 {
@@ -30,14 +31,23 @@ class Panier
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="must not be empty")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 11,
+     *      minMessage = "doit etre >=3 ",
+     *      maxMessage = "doit etre <=11" )
      * @ORM\Column(name="nomproduit", type="string", length=11, nullable=false)
      */
     private $nomproduit;
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+     *       min = 3,
+     *       max = 11,
+     *       minMessage = "doit etre >=3 ",
+     *       maxMessage = "doit etre <=11" )
      * @ORM\Column(name="typeprod", type="string", length=11, nullable=false)
      */
     private $typeprod;

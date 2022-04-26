@@ -1,47 +1,119 @@
 {% extends 'base-front.html.twig' %}
 
-{% block title %}Panier index{% endblock %}
+{% block title %}Panier index
+{% endblock %}
 
 {% block body %}
-    <h1>Panier index</h1>
+	<h1>Panier index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nomproduit</th>
-                <th>Quantite</th>
-                <th>Typeprod</th>
-                <th>Prixprod</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for panier in paniers %}
-            <tr>
-                <td>{{ panier.nomproduit }}</td>
-                <td>{{ panier.quantite }}</td>
-                <td>{{ panier.typeprod }}</td>
-                <td>{{ panier.prixprod }}</td>
-                <td>{{ panier.quantite * panier.prixprod }}</td>
-                <td>
-                    <a href="{{ path('app_panier_delete', {'panierid': panier.panierid}) }}" class="btn btn-danger btn-sm">supprimer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-        {# </tfoot>
-        <tr>
-            <td colspan="3">Total :
-            </td>
-            <td>{{ total }}</td>
-            <td></td>
-        </tr>
-        </tfoot> #}
-    </table>
+	{# <table class="table">
+	        <thead>
+	            <tr>
+	                <th>Nomproduit</th>
+	                <th>Quantite</th>
+	                <th>Typeprod</th>
+	                <th>Prixprod</th>
+	                <th>Total</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        {% for panier in paniers %}
+	            <tr>
+	                <td>{{ panier.nomproduit }}</td>
+	                <td>{{ panier.quantite }}</td>
+	                <td>{{ panier.typeprod }}</td>
+	                <td>{{ panier.prixprod }}</td>
+	                <td>{{ panier.quantite * panier.prixprod }}</td>
+	                <td>
+	                    <a href="{{ path('app_panier_delete', {'panierid': panier.panierid}) }}" class="btn btn-danger btn-sm">supprimer</a>
+	                </td>
+	            </tr>
+	        {% else %}
+	            <tr>
+	                <td colspan="6">no records found</td>
+	            </tr>
+	        {% endfor %}
+	        </tbody>
+	        </tfoot>
+	        <tr>
+	            <td colspan="3">Total :
+	            </td>
+	            <td>{{ total }}</td>
+	            <td></td>
+	        </tr>
+	        </tfoot>
+	    </table> #}
+	<div class="row">
+		<div class="col-md-8">
+			<div class="box-bg-white col-md-12">
+				<h3 class="section-title">Shopping Cart</h3>
+                     {% for panier in paniers %}
+				<div class="row">
+					<div class="col-md-2 col-xs-6 less-padding-right">
+						<img src="https://food.fnr.sndimg.com/content/dam/images/food/products/2022/3/11/rx_goldbelly-clinton-street-diner-zeus-burger.jpg.rend.hgtvcom.406.305.suffix/1647019464547.jpeg" width="100%">
+					</div>
+					<div class="col-md-5 col-xs-12">
+						<span>{{ panier.nomproduit }}</span><br>
+						<p class="text-gray-3 text-thin">{{ panier.typeprod }}</p>
+						<p class="section-title">{{ panier.prixprod }} DT</p> 
+					   {{ include('panier/_delete_form.html.twig') }}
+						{# <a href="{{ path('app_panier_delete', {'panierid': panier.panierid}) }}" class="btn btn-danger btn-sm">supprimer</a> #}
+					</div>
 
-    <a href="{{ path('app_panier_new') }}">Create new</a>
+					<div class="col-md-3 col-xs-7">
+						<p>Quantity</p>
+						<form class="form-inline">
+							<div class="form-group pull-left">
+								<button class="btn btn-default">-</button>
+							</div>
+							<div class="form-group pull-left">
+								<input type="number" class="form-control number-input" id="" value={{ panier.quantite}} style="width: 60px;">
+							</div>
+							<div class="form-group">
+								<button class="btn btn-default">+</button>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-2 col-xs-5">
+						<p class="text-right">Subtotal</p>
+						<p class="text-right section-title">{{ panier.quantite * panier.prixprod }} DT</p>
+					</div>
+                </div>
+				{%else%}
+                <div>Votre panier est vide !</div>
+                {% endfor %}
+				<hr>
+			</div>
+
+
+            
+
+			<a href="checkout1.html" class="btn btn-default pull-right button-black">Continue to checkout</a>
+			<div class="clearfix maya-small-padding"></div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="box-bg-white">
+				<div class="clearfix maya-small-padding"></div>
+				<h3 class="text-right text-oswald">Need Help ?
+				</h3>
+				<p class="text-right text-gray-3 text-medium text-thin">test</p>
+				<hr>
+				<div class="row">
+					<div class="col-md-6">
+						<p class="text-gray-2 text-thin">test<br>from 9.00 - 18.00</p>
+					</div>
+					<div class="col-md-6">
+						<p class="text-right">+62 21 567898765<br><a class="text-black text-underline" href="mailto: info@backtokimi.com">test@test.com</a>
+						</p>
+					</div>
+				</div>
+				<div class="clearfix maya-small-padding"></div>
+			</div>
+		</div>
+	</div>
+
+
+	<a href="{{ path('app_panier_new') }}">Create new</a>
+	
 {% endblock %}
