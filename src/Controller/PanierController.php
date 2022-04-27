@@ -14,12 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * @Route("/panier")
+ * @Route("/")
  */
 class PanierController extends AbstractController
 {
     /**
-     * @Route("/", name="app_panier_index", methods={"GET"})
+     * @Route("/panier", name="app_panier_index", methods={"GET"})
      */
     public function index(EntityManagerInterface $entityManager): Response
     {
@@ -43,7 +43,7 @@ class PanierController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_panier_new", methods={"GET", "POST"})
+     * @Route("/panier/new", name="app_panier_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
@@ -91,7 +91,7 @@ class PanierController extends AbstractController
 
 
 /**
-     * @Route("/delete/{panierid}", name="app_panier_delete",methods={"GET", "DELETE", "POST"})
+     * @Route("/panier/delete/{panierid}", name="app_panier_delete",methods={"GET", "DELETE", "POST"})
      */
     public function delete(Request $request, Panier $panier): Response
     {
@@ -103,4 +103,29 @@ class PanierController extends AbstractController
 
         return $this->redirectToRoute('app_panier_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+     /**
+     * @Route("/checkout", name="app_panier_chekcout", methods={"GET"})
+     */
+    public function checkout(): Response
+    {
+    \Stripe\Stripe::setApiKey('sk_test_51KbYCPCmIH5b4ki3O2XgjSXQB7zwZ8jktL7T7k26PLnliyEvwh5xts9P7o8aX3ndeONnCdwNyuFSgo5hWD31pg1n00o01oKIwU');
+    $session = \Stripe\Checkout\Session::create([
+        'line_items' => [[
+          'price_data' => [
+            'currency' => 'eur',
+            'product_data' => [
+              'name' => 'T-shirt',
+            ],
+            'unit_amount' => 2000,
+          ],
+          'quantity' => 1,
+        ]],
+        'mode' => 'payment',
+        'success_url' => 'https://example.com/success',
+        'cancel_url' => 'https://example.com/cancel',
+      ]);
+      return $this->redirect($session->url, 303);
+}
 }

@@ -10,6 +10,8 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    # bind: 
+    # $stripeSK: "%env(sk_test_51KbYCPCmIH5b4ki3O2XgjSXQB7zwZ8jktL7T7k26PLnliyEvwh5xts9P7o8aX3ndeONnCdwNyuFSgo5hWD31pg1n00o01oKIwU)%"    
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
