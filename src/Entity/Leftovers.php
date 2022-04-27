@@ -52,6 +52,10 @@ class Leftovers
      * @var int
      *
      * @ORM\Column(name="quantite", type="integer", nullable=false)
+
+     *       @Assert\NotBlank(message="Must be filled")
+     *      @Assert\Positive(message="Must be positive")
+
      */
     private $quantite;
 

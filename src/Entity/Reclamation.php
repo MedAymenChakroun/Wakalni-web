@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReclamationRepository;
 
 /**
  * Reclamation
  *
  * @ORM\Table(name="reclamation", indexes={@ORM\Index(name="fkcommanderec", columns={"commandeid"}), @ORM\Index(name="fkclientrec", columns={"clientid"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ReclamationRepository::class)
  */
 class Reclamation
 {

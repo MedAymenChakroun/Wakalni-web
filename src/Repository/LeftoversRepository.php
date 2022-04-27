@@ -45,6 +45,28 @@ class LeftoversRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllWithSearch(?string $term)
+    {
+        $qb = $this->createQueryBuilder('l');
+        if ($term) {
+            $qb->andWhere('l.sujet LIKE :term OR l.type LIKE :term OR l.quantite LIKE :term')
+                ->setParameter('term', '%' . $term . '%')
+            ;
+        }
+        return $qb
+            ->getQuery()
+            ->getResult();
+
+    }
+
+    public  function  triedecroissant()
+    {
+        return $this->createQueryBuilder('leftovers')
+            ->orderBy('leftovers.dateexpiration','DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Leftovers[] Returns an array of Leftovers objects
     //  */

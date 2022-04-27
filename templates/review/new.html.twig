@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New Review</title>
+
+{% block body %}
+    <h1>Create new Review</h1>
+
+    {{ include('review/_form.html.twig') }}
+
+    <a href="{{ path('app_review_index') }}">back to list</a>
+{% endblock %}

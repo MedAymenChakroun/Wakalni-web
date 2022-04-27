@@ -52,6 +52,10 @@ class Organisation
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=30, nullable=false)
+     *   @Assert\NotBlank(message="Must be filled")
+     *   @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 
@@ -59,6 +63,11 @@ class Organisation
      * @var int
      *
      * @ORM\Column(name="numero", type="integer", nullable=false)
+     *  @Assert\NotBlank(message="Must be filled")
+     *        @Assert\Positive(message="Must be positive")
+
+     *
+     * )
      */
     private $numero;
 
@@ -68,7 +77,9 @@ class Organisation
      * @ORM\ManyToOne(targetEntity="Leftovers")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="leftoverid", referencedColumnName="leftoverid")
+
      * })
+     *  @Assert\NotBlank(message="Must be filled")
      */
     private $leftoverid;
 

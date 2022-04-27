@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,8 +43,8 @@
 
     <title>Kimi Themes</title>
 
-    <!-- Bootstrap core CSS -->	
-	<link href="{{asset('front/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{{asset('front/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('front/css/kimi.css')}}" rel="stylesheet">
     <link href="{{asset('front/css/font-awesome.min.css')}}" rel="stylesheet">
 
@@ -80,7 +81,7 @@
                 <p class="help-text hidden-sm hidden-md" id="helpText">Find any troubles? Drop us an email at <a href="mailto:grow@backtokimi.com" class="text-secondary">grow@backtokimi.com</a> </p>
             </div>
             <div class="col-md-4 col-sm-4">
-                <p class="text-center logo-container"><a href="index.html"><img src="images/logo.png" width="100"></a></p>
+                <p class="text-center logo-container"><a href="index.html"><img src="{{ asset("images/logo.png") }}" width="100"></a></p>
             </div>
             <div class="col-md-4 less-padding-right">
                 <a href="registerMerchant.html" class="btn pull-right button-green-top-nav">Be Kimi Merchant</a>
@@ -166,7 +167,7 @@
 
 
 <div class="container-fluid kimi-container less-padding">
-{% block body %}
+    {% block body %}
     <div class="homepage-slider owl-carousel owl-theme">
         <div class="item">
             <div class="scrim"></div>
@@ -278,22 +279,22 @@
         <div class="row">
             <h2 class="default-userProductList-InfoBar-title text-center"><i class="fa fa-heart-o" aria-hidden="true"></i> This Week Favoourites</h2>
             <!--<div class="col-sm-6 col-md-4" data-behavior="sample_code">-->
-                <!--<a href="productDetail.html" class="thumbnail_item thumbnail less-padding less-margin">-->
-                    <!--<img src="https://res.cloudinary.com/kimithemes/image/upload/c_thumb,h_480,w_480/v1506329237/seafood_rd0j5y.jpg" alt="Seafood">-->
-                <!--</a>-->
-                <!--<div class="caption box">-->
-                    <!--<h3>Seafood</h3>-->
-                    <!--<div class="row">-->
-                        <!--<div class="col-sm-8 col-xs-6">-->
-                            <!--<p class="default-userProductList-CardList-price">Rp 45.000 / pcs</p>-->
-                            <!--<span class="min-order">10 pcs min order</span>-->
-                        <!--</div>-->
+            <!--<a href="productDetail.html" class="thumbnail_item thumbnail less-padding less-margin">-->
+            <!--<img src="https://res.cloudinary.com/kimithemes/image/upload/c_thumb,h_480,w_480/v1506329237/seafood_rd0j5y.jpg" alt="Seafood">-->
+            <!--</a>-->
+            <!--<div class="caption box">-->
+            <!--<h3>Seafood</h3>-->
+            <!--<div class="row">-->
+            <!--<div class="col-sm-8 col-xs-6">-->
+            <!--<p class="default-userProductList-CardList-price">Rp 45.000 / pcs</p>-->
+            <!--<span class="min-order">10 pcs min order</span>-->
+            <!--</div>-->
 
-                        <!--<div class="col-sm-4 col-xs-6">-->
-                            <!--<button onclick="location.href='shoppingCart.html'" class="btn default-userProductList-CardList-button pull-right" role="button">Add to Cart</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--<div class="col-sm-4 col-xs-6">-->
+            <!--<button onclick="location.href='shoppingCart.html'" class="btn default-userProductList-CardList-button pull-right" role="button">Add to Cart</button>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</div>-->
 
             <div class="col-sm-6 col-md-4" data-behavior="sample_code">
@@ -316,22 +317,22 @@
             </div>
 
             <!--<div class="col-sm-6 col-md-4" data-behavior="sample_code">-->
-                <!--<a href="productDetail.html" class="thumbnail_item thumbnail less-padding less-margin">-->
-                    <!--<img src="https://res.cloudinary.com/kimithemes/image/upload/c_thumb,h_480,w_480/v1506329233/seafood_2_vcuolq.jpg" alt="Seafood">-->
-                <!--</a>-->
-                <!--<div class="caption box">-->
-                    <!--<h3>Seafood</h3>-->
-                    <!--<div class="row">-->
-                        <!--<div class="col-sm-8 col-xs-6">-->
-                            <!--<p class="default-userProductList-CardList-price">Rp 45.000 / pcs</p>-->
-                            <!--<span class="min-order">5 pcs min order</span>-->
-                        <!--</div>-->
+            <!--<a href="productDetail.html" class="thumbnail_item thumbnail less-padding less-margin">-->
+            <!--<img src="https://res.cloudinary.com/kimithemes/image/upload/c_thumb,h_480,w_480/v1506329233/seafood_2_vcuolq.jpg" alt="Seafood">-->
+            <!--</a>-->
+            <!--<div class="caption box">-->
+            <!--<h3>Seafood</h3>-->
+            <!--<div class="row">-->
+            <!--<div class="col-sm-8 col-xs-6">-->
+            <!--<p class="default-userProductList-CardList-price">Rp 45.000 / pcs</p>-->
+            <!--<span class="min-order">5 pcs min order</span>-->
+            <!--</div>-->
 
-                        <!--<div class="col-sm-4 col-xs-6">-->
-                            <!--<button onclick="location.href='shoppingCart.html'" class="btn default-userProductList-CardList-button pull-right" role="button">Add to Cart</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--<div class="col-sm-4 col-xs-6">-->
+            <!--<button onclick="location.href='shoppingCart.html'" class="btn default-userProductList-CardList-button pull-right" role="button">Add to Cart</button>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</div>-->
 
             <div class="col-sm-6 col-md-4">
@@ -443,31 +444,31 @@
         <div class="col-md-2 col-md-offset-1">
             <p class="text-center">
                 <img src="https://s3-ap-southeast-1.amazonaws.com/kimistatic/images/svg/pilih_menu.svg" width="120" />
-                <h5 class="text-roboto text-center">Pilih Menu yang Anda Inginkan</h5>
+            <h5 class="text-roboto text-center">Pilih Menu yang Anda Inginkan</h5>
             </p>
         </div>
         <div class="col-md-2">
             <p class="text-center">
                 <img src="https://s3-ap-southeast-1.amazonaws.com/kimistatic/images/svg/atur_jadwal.svg" width="120" />
-                <h5 class="text-roboto text-center">Atur Jadwal dan Alamat Pengantaran</h5>
+            <h5 class="text-roboto text-center">Atur Jadwal dan Alamat Pengantaran</h5>
             </p>
         </div>
         <div class="col-md-2">
             <p class="text-center">
                 <img src="https://s3-ap-southeast-1.amazonaws.com/kimistatic/images/svg/approval.svg" width="120" />
-                <h5 class="text-roboto text-center">Dapatkan Approval dari Chef</h5>  
+            <h5 class="text-roboto text-center">Dapatkan Approval dari Chef</h5>
             </p>
         </div>
         <div class="col-md-2">
             <p class="text-center">
                 <img src="https://s3-ap-southeast-1.amazonaws.com/kimistatic/images/svg/pay.svg" width="120" />
-                <h5 class="text-roboto text-center">Lakukan Pembayaran</h5>
+            <h5 class="text-roboto text-center">Lakukan Pembayaran</h5>
             </p>
         </div>
         <div class="col-md-2">
             <p class="text-center">
                 <img src="https://s3-ap-southeast-1.amazonaws.com/kimistatic/images/svg/nikmati.svg" width="120" />
-                <h5 class="text-roboto text-center">Nikmati Order Anda Sesuai Jalan</h5>    
+            <h5 class="text-roboto text-center">Nikmati Order Anda Sesuai Jalan</h5>
             </p>
         </div>
     </div>
@@ -478,54 +479,54 @@
 
 <div class="clearfix maya-tiny-padding"></div>
 {% block footer %}
-<div class="container mobile-full-width-slider">
+    <div class="container mobile-full-width-slider">
 
-    <h2 class="default-userProductList-InfoBar-title text-center"><i class="fa fa-heart-o" aria-hidden="true"></i> Featured Merchant</h2>
-    <div class="featured-merchant-slider owl-carousel owl-theme">
-        <div class="item">
-            <!--<div class="scrim"></div>-->
-            <!--<p>Sucicakes</p>-->
-            <img src="images/sucicakes_logo.png" class="img-rounded" width="100%">
+        <h2 class="default-userProductList-InfoBar-title text-center"><i class="fa fa-heart-o" aria-hidden="true"></i> Featured Merchant</h2>
+        <div class="featured-merchant-slider owl-carousel owl-theme">
+            <div class="item">
+                <!--<div class="scrim"></div>-->
+                <!--<p>Sucicakes</p>-->
+                <img src="{{ asset("front/images/sucicakes_logo.png") }}" class="img-rounded" width="100%">
+            </div>
+
+            <div class="item">
+                <!--<div class="scrim"></div>-->
+                <!--<p>Nasi Bakar 58</p>-->
+                <img src="{{ asset("front/front/images/nasi_bakar_logo.jpg")}} class="img-rounded" width="100%">
+            </div>
+
+            <div class="item">
+                <!--<div class="scrim"></div>-->
+                <!--<p>LL Ball</p>-->
+                <img src="{{ asset("front/images/llball_logo.JPG")}}" class="img-rounded" width="100%">
+            </div>
+
+            <div class="item">
+                <!--<div class="scrim"></div>-->
+                <!--<p>LL Ball</p>-->
+                <img src="{{ asset("front/images/deliciozo_logo.jpg")}}" class="img-rounded" width="100%">
+            </div>
+
+            <div class="item">
+                <!--<div class="scrim"></div>-->
+                <!--<p>LL Ball</p>-->
+                <img src="{{ asset("front/images/bakmi_48_logo.jpg")}}" class="img-rounded" width="100%">
+            </div>
+
+            <div class="item">
+                <!--<div class="scrim"></div>-->
+                <!--<p>LL Ball</p>-->
+                <img src="images/llball_logo.JPG" class="img-rounded" width="100%">
+            </div>
+
+            <div class="item">
+                <!--<div class="scrim"></div>-->
+                <!--<p>LL Ball</p>-->
+                <img src="images/fans_logo.png" class="img-rounded" width="100%">
+            </div>
+
         </div>
-
-        <div class="item">
-            <!--<div class="scrim"></div>-->
-            <!--<p>Nasi Bakar 58</p>-->
-            <img src="images/nasi_bakar_logo.jpg" class="img-rounded" width="100%">
-        </div>
-
-        <div class="item">
-            <!--<div class="scrim"></div>-->
-            <!--<p>LL Ball</p>-->
-            <img src="images/llball_logo.JPG" class="img-rounded" width="100%">
-        </div>
-
-        <div class="item">
-            <!--<div class="scrim"></div>-->
-            <!--<p>LL Ball</p>-->
-            <img src="images/deliciozo_logo.jpg" class="img-rounded" width="100%">
-        </div>
-
-        <div class="item">
-            <!--<div class="scrim"></div>-->
-            <!--<p>LL Ball</p>-->
-            <img src="images/bakmi_48_logo.jpg" class="img-rounded" width="100%">
-        </div>
-
-        <div class="item">
-            <!--<div class="scrim"></div>-->
-            <!--<p>LL Ball</p>-->
-            <img src="images/llball_logo.JPG" class="img-rounded" width="100%">
-        </div>
-
-        <div class="item">
-            <!--<div class="scrim"></div>-->
-            <!--<p>LL Ball</p>-->
-            <img src="images/fans_logo.png" class="img-rounded" width="100%">
-        </div>
-
     </div>
-</div>
 {% endblock %}
 <div class="clearfix maya-small-padding"></div>
 

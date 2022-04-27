@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<title>Reclamation index</title>
+
+{% block body %}
+    <h1>Reclamation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reclamationid</th>
+                <th>Sujet</th>
+                <th>Contenu</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.reclamationid }}</td>
+                <td>{{ reclamation.sujet }}</td>
+                <td>{{ reclamation.contenu }}</td>
+                <td>
+                    <a href="{{ path('app_reclamation_show', {'reclamationid': reclamation.reclamationid}) }}">show</a>
+                    <a href="{{ path('app_reclamation_edit', {'reclamationid': reclamation.reclamationid}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reclamation_new') }}">Create new</a>
+{% endblock %}

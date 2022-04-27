@@ -7,10 +7,7 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Organisationid</th>
-                <td>{{ organisation.organisationid }}</td>
-            </tr>
+
             <tr>
                 <th>Nom</th>
                 <td>{{ organisation.nom }}</td>
@@ -30,9 +27,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_organisation_index') }}">back to list</a>
+    <a href="{{ path('app_organisation_index') }}">Retour liste</a>
 
-    <a href="{{ path('app_organisation_edit', {'organisationid': organisation.organisationid}) }}">edit</a>
 
     {{ include('organisation/_delete_form.html.twig') }}
 {% endblock %}

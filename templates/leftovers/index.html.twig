@@ -4,11 +4,15 @@
 
 {% block body %}
     <h1>Leftovers index</h1>
-
+    <form role="search" class="sr-input-func">
+        <input type="text" placeholder="Search..." class="search-int form-control" name="search">
+        <a href="#"><i class="fa fa-search"></i></a>
+    </form>
+    <button></button>
     <table class="table">
         <thead>
             <tr>
-                <th>Leftoverid</th>
+
                 <th>Sujet</th>
                 <th>Type</th>
                 <th>Quantite</th>
@@ -19,23 +23,26 @@
         <tbody>
         {% for leftover in leftovers %}
             <tr>
-                <td>{{ leftover.leftoverid }}</td>
+
                 <td>{{ leftover.sujet }}</td>
                 <td>{{ leftover.type }}</td>
                 <td>{{ leftover.quantite }}</td>
                 <td>{{ leftover.dateexpiration ? leftover.dateexpiration|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_leftovers_show', {'leftoverid': leftover.leftoverid}) }}">show</a>
-                    <a href="{{ path('app_leftovers_edit', {'leftoverid': leftover.leftoverid}) }}">edit</a>
+                    <a href="{{ path('app_leftovers_show', {'leftoverid': leftover.leftoverid}) }}">detail</a>
+                    <a href="{{ path('app_leftovers_edit', {'leftoverid': leftover.leftoverid}) }}">modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">tableau vide</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_leftovers_new') }}">Create new</a>
+<div class="navigation">
+    {{ knp_pagination_render(leftovers) }}
+</div>
+    <a href="{{ path('app_leftovers_new') }}">Ajouter</a>
+    <a style="padding-left: 20px" href="{{ path('leftovers_stats') }}">Stats</a>
 {% endblock %}

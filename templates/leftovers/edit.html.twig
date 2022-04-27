@@ -3,11 +3,11 @@
 {% block title %}Edit Leftovers{% endblock %}
 
 {% block body %}
-    <h1>Edit Leftovers</h1>
+    <h1>Modifier Leftovers</h1>
 
-    {{ include('leftovers/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('leftovers/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_leftovers_index') }}">back to list</a>
+    <a href="{{ path('app_leftovers_index') }}">Retour liste</a>
 
     {{ include('leftovers/_delete_form.html.twig') }}
 {% endblock %}

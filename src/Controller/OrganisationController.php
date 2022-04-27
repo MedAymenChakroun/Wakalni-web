@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Organisation;
 use App\Form\OrganisationType;
+use App\Repository\LeftoversRepository;
+use App\Repository\OrganisationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,11 +21,12 @@ class OrganisationController extends AbstractController
     /**
      * @Route("/", name="app_organisation_index", methods={"GET"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager,Request $request,OrganisationRepository  $repository): Response
     {
         $organisations = $entityManager
             ->getRepository(Organisation::class)
             ->findAll();
+
 
         return $this->render('organisation/index.html.twig', [
             'organisations' => $organisations,
@@ -92,5 +96,29 @@ class OrganisationController extends AbstractController
         }
 
         return $this->redirectToRoute('app_organisation_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @Route("/stats", name="organisation_stats")
+     */
+    public function statistics(OrganisationRepository  $Repository, EntityManagerInterface $entityManager): response
+    {
+        $organisations = $Repository->findAll();
+
+
+        $organisationName = [];
+        $organisationCount = [];
+        // On "démonte" les données pour les séparer tel qu'attendu par ChartJS
+        foreach($organisations as $org){
+            $organisationName[] = $org->getNom();
+            $organisationCount[]= count($organisations);
+        }
+
+
+        return $this->render('organisation/stat.html.twig', [
+            'organisationName' => json_encode($organisationName),
+            'organisationCount' => json_encode($organisationCount)
+
+        ]);
+
     }
 }

@@ -1,13 +1,13 @@
 {% extends 'base-back.html.twig' %}
 
-{% block title %}Edit Organisation{% endblock %}
+{% block title %}edit Organisation{% endblock %}
 
 {% block body %}
-    <h1>Edit Organisation</h1>
+    <h1>Modifier Organisation</h1>
 
-    {{ include('organisation/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('organisation/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_organisation_index') }}">back to list</a>
+    <a href="{{ path('app_organisation_index') }}">Retour liste </a>
 
     {{ include('organisation/_delete_form.html.twig') }}
 {% endblock %}
