@@ -50,11 +50,11 @@
                      {% for panier in paniers %}
 				<div class="row">
 					<div class="col-md-2 col-xs-6 less-padding-right">
-						<img src="https://food.fnr.sndimg.com/content/dam/images/food/products/2022/3/11/rx_goldbelly-clinton-street-diner-zeus-burger.jpg.rend.hgtvcom.406.305.suffix/1647019464547.jpeg" width="100%">
+						<img src="{{ vich_uploader_asset(panier.produitid, 'image') }}" alt="{{ panier.produitid.nom }}" width="100%">
 					</div>
 					<div class="col-md-5 col-xs-12">
-						{# <span>{{ panier.produitid }}</span><br>
-						<p class="text-gray-3 text-thin">{{ panier.produitid }}</p> #}
+						<span>{{ panier.produitid.nom }}</span><br>
+						<p class="text-gray-3 text-thin">{{ panier.produitid.type }}</p>
 						<p class="section-title">{{ panier.prixprod }} DT</p> 
 					   {{ include('panier/_delete_form.html.twig') }}
 						{# <a href="{{ path('app_panier_delete', {'panierid': panier.panierid}) }}" class="btn btn-danger btn-sm">supprimer</a> #}

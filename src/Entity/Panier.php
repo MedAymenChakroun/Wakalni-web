@@ -39,6 +39,15 @@ class Panier
      * })
      */
     private $clientid;
+        /**
+     * @var \Produit
+     *
+     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produitid", referencedColumnName="produitid")
+     * })
+     */
+    private $produitid;
     /**
      * @var int
      *

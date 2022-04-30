@@ -60,43 +60,34 @@ class ProduitController extends AbstractController
      * @Route("/{produitid}", name="app_produit_show", methods={"GET"})
      */
     public function show(Produit $produit, LoggerInterface $logger): Response
-    {   
-         dd($produit->getNom());
-        
+    {
 
-
-       
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
-            
+
         ]);
     }
-     /**
-     * @Route("/{produitid}", name="app_produit_show")
+    /**
+     * @Route("/{produitid}/showw", name="app_produit_showw", methods={"GET", "POST"})
      */
-    public function getSqlResult(EntityManagerInterface $em,Produit $produit,EntityManagerInterface $entityManager ) : Response
-{   
-
-    $id = $produit->getProduitid();
-    $prix = $produit->getPrix()*5;
-    
-
-
-    $sql = " 
+    public function getSqlResult(EntityManagerInterface $em, Produit $produit, EntityManagerInterface $entityManager)
+    {
+        $id = $produit->getProduitid();
+        $prix = $produit->getPrix() * 5;
+        $sql = " 
         INSERT INTO Panier(produitid,clientid,quantite,prixprod)
         VALUES ($id,1,5,$prix);";
 
-    $stmt = $em->getConnection()->prepare($sql);
-    $result = $stmt->executeQuery();
-    $paniers = $entityManager
+        $stmt = $em->getConnection()->prepare($sql);
+        $result = $stmt->executeQuery();
+        $paniers = $entityManager
             ->getRepository(Panier::class)
             ->findAll();
-            dd($paniers);
-            // return $this->render('panier/index.html.twig', [
-            //     'paniers' => $paniers,
-            //     // 'total' => $total
-            // ]);
-}   
+        return $this->render('panier/index.html.twig', [
+            'paniers' => $paniers,
+            // 'total' => $total
+        ]);
+    }
 
 
 
@@ -105,13 +96,13 @@ class ProduitController extends AbstractController
      */
     // public function data(Produit $produit, LoggerInterface $logger): Response
     // {   
-       
+
 
 
 
     //       return $this->render('produit/show.html.twig', [
     //         'produit' => $produit,
-            
+
     //     ]);
 
     // }
@@ -142,7 +133,7 @@ class ProduitController extends AbstractController
      */
     public function delete(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$produit->getProduitid(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $produit->getProduitid(), $request->request->get('_token'))) {
             $entityManager->remove($produit);
             $entityManager->flush();
         }
@@ -151,9 +142,7 @@ class ProduitController extends AbstractController
     }
 
 
-    /**
-     * @Route("/{produitid}", name="app_produit_show", methods={"GET"})
-     */
+  
     // public function test($produitid)
     // {
     //     $em = $this->getDoctrine()->getManager();
@@ -171,14 +160,14 @@ class ProduitController extends AbstractController
     // {
     //     $connection = $this->getDoctrine()->getManager();
     //             $query = "SELECT u.nom FROM `utilisateur` u, `produit` p WHERE u.id=p.crid AND p.crid=1;";
-        // return $this->render('produit/show.html.twig', [
-        //     'chef' => $Utilisateur,
-        // ]);
+    // return $this->render('produit/show.html.twig', [
+    //     'chef' => $Utilisateur,
+    // ]);
     // }
 
 
 
 
- 
+
 
 }

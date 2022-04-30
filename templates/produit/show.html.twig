@@ -117,7 +117,8 @@
 			</div>
 
 			<div class="product-detail-action-button-container">
-				<button onclick="location.href='shoppingCart.html'" class="btn button-add-to-bag" style="margin-right: 10px;">Ajouter Au Panier</button>
+				<button  class="btn button-add-to-bag" style="margin-right: 10px;"><a href="{{ path('app_produit_showw', {'produitid': produit.produitid}) }} " style="color : white">Ajouter</a></button>
+				
 				<button class="btn btn-default button-black button-learn-more" id="bookmarkButton"><a href="{{ path('app_produit_index') }}" style="color : white">Retour a la liste</a></button>
 				{# <button class="btn btn-default button-black button-learn-more" id="deleteBookmarkButton" style="display: none;">Delete Favourite</button> #}
 			</div>
