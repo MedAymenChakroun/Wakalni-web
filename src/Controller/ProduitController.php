@@ -10,6 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Psr\Log\LoggerInterface;
+use App\Entity\Panier;
+use App\Form\PanierType;
+
 
 
 /**
@@ -55,14 +59,63 @@ class ProduitController extends AbstractController
     /**
      * @Route("/{produitid}", name="app_produit_show", methods={"GET"})
      */
-    public function show(Produit $produit): Response
+    public function show(Produit $produit, LoggerInterface $logger): Response
     {   
+         dd($produit->getNom());
+        
+
+
        
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
             
         ]);
     }
+     /**
+     * @Route("/{produitid}", name="app_produit_show")
+     */
+    public function getSqlResult(EntityManagerInterface $em,Produit $produit,EntityManagerInterface $entityManager ) : Response
+{   
+
+    $id = $produit->getProduitid();
+    $prix = $produit->getPrix()*5;
+    
+
+
+    $sql = " 
+        INSERT INTO Panier(produitid,clientid,quantite,prixprod)
+        VALUES ($id,1,5,$prix);";
+
+    $stmt = $em->getConnection()->prepare($sql);
+    $result = $stmt->executeQuery();
+    $paniers = $entityManager
+            ->getRepository(Panier::class)
+            ->findAll();
+            dd($paniers);
+            // return $this->render('panier/index.html.twig', [
+            //     'paniers' => $paniers,
+            //     // 'total' => $total
+            // ]);
+}   
+
+
+
+    /**
+     * @Route("/{produitid}", name="app_produit_panier", methods={"GET"})
+     */
+    // public function data(Produit $produit, LoggerInterface $logger): Response
+    // {   
+       
+
+
+
+    //       return $this->render('produit/show.html.twig', [
+    //         'produit' => $produit,
+            
+    //     ]);
+
+    // }
+
 
     /**
      * @Route("/{produitid}/edit", name="app_produit_edit", methods={"GET", "POST"})
@@ -97,6 +150,7 @@ class ProduitController extends AbstractController
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
 
+
     /**
      * @Route("/{produitid}", name="app_produit_show", methods={"GET"})
      */
@@ -121,5 +175,10 @@ class ProduitController extends AbstractController
         //     'chef' => $Utilisateur,
         // ]);
     // }
+
+
+
+
+ 
 
 }

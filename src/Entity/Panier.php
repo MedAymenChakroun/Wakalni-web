@@ -28,37 +28,8 @@ class Panier
      */
     private $quantite;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nomproduit", type="string", length=11, nullable=false)
-     */
-    private $nomproduit;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="typeprod", type="string", length=11, nullable=false)
-     */
-    private $typeprod;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="prixprod", type="float", precision=10, scale=0, nullable=false)
-     */
-    private $prixprod;
-
-    /**
-     * @var \Produit
-     *
-     * @ORM\ManyToOne(targetEntity="Produit")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="produitid", referencedColumnName="produitid")
-     * })
-     */
-    private $produitid;
-
+ 
+    
     /**
      * @var \Utilisateur
      *
@@ -68,16 +39,16 @@ class Panier
      * })
      */
     private $clientid;
-
     /**
-     * @var \Offre
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Offre")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="offreid", referencedColumnName="offreid")
-     * })
+     * @ORM\Column(name="prixprod", type="integer", nullable=false)
+     * 
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $offreid;
+    private $prixprod;
+
+    
 
     public function getPanierid(): ?int
     {
@@ -96,29 +67,7 @@ class Panier
         return $this;
     }
 
-    public function getNomproduit(): ?string
-    {
-        return $this->nomproduit;
-    }
-
-    public function setNomproduit(string $nomproduit): self
-    {
-        $this->nomproduit = $nomproduit;
-
-        return $this;
-    }
-
-    public function getTypeprod(): ?string
-    {
-        return $this->typeprod;
-    }
-
-    public function setTypeprod(string $typeprod): self
-    {
-        $this->typeprod = $typeprod;
-
-        return $this;
-    }
+   
 
     public function getPrixprod(): ?float
     {
@@ -156,17 +105,7 @@ class Panier
         return $this;
     }
 
-    public function getOffreid(): ?Offre
-    {
-        return $this->offreid;
-    }
-
-    public function setOffreid(?Offre $offreid): self
-    {
-        $this->offreid = $offreid;
-
-        return $this;
-    }
+   
     public function __toString()
     {
         return $this->nomproduit;
