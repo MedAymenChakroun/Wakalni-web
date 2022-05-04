@@ -1,0 +1,37 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %}Mes Livraisons{% endblock %}
+
+{% block body %}
+    <a onclick="{{ path('sortlivd') }}" class="pull-left search-button" id="sortd"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+    <a onclick="{{ path('sortliva') }}" class="pull-left search-button" id="sorta"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    {% for livraison in l %}
+<div class="box-bg-white col-md-12 col-xs-12">
+<div class="row">
+    <div class="col-md-8">
+        <div class="box-bg-white col-md-12">
+            <h3 class="section-title">Livraison numero : {{ livraison.id }} {% if livraison.progress==1 %}( Livraison Complete ) {% endif %}</h3>
+            <div class="row">
+                <div class="col-md-2 col-xs-6 less-padding-right">
+                    <img class="img-profile rounded-circle"
+                         src="{{ asset('uploads_directory/'~livraison.idcommande.clientid.image) }}" width="100%">
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <span>ID Commande : {{ livraison.idcommande.id }} </span><br/>
+                    <p class="text-gray-3 text-thin">Client name: {{ livraison.idcommande.clientid.firstname }} {{ livraison.idcommande.clientid.lastname }}</p>
+                    <p class="section-title">Client phone number : {{ livraison.idcommande.clientid.phonenumber }}</p>
+                    <a href="{{ path('livraison_delete', {'id': livraison.id}) }}" class="btn btn-default outline-default-button outline-small-default-button" >Annuler</a>
+                    <a {% if livraison.progress==1 %}disabled="true" {% endif %}href="{{ path('livraison_done', {'id': livraison.id}) }}" class="btn btn-default outline-default-button outline-small-default-button" >Valider</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+</div>
+    {% else %}
+        <tr>
+            <td colspan="5">Pas de livraison found</td>
+        </tr>
+    {% endfor %}
+{% endblock %}
