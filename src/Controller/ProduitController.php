@@ -70,13 +70,18 @@ class ProduitController extends AbstractController
     /**
      * @Route("/{produitid}/showw", name="app_produit_showw", methods={"GET", "POST"})
      */
-    public function getSqlResult(EntityManagerInterface $em, Produit $produit, EntityManagerInterface $entityManager)
+    public function getSqlResult(EntityManagerInterface $em, Produit $produit, EntityManagerInterface $entityManager, Request $request)
     {
+
+    //    $s =  localStorage.getItem('quantity', x);
+            $x= $_COOKIE['quantity'];
+            $int_value = intval( $x );
+
+    
         $id = $produit->getProduitid();
-        $prix = $produit->getPrix() * 5;
-        $sql = " 
-        INSERT INTO Panier(produitid,clientid,quantite,prixprod)
-        VALUES ($id,1,5,$prix);";
+        $prix = $produit->getPrix() * $int_value ;
+        $sql = " INSERT INTO Panier(produitid,clientid,quantite,prixprod)
+        VALUES ($id,1,$int_value ,$prix);";
 
         $stmt = $em->getConnection()->prepare($sql);
         $result = $stmt->executeQuery();
@@ -142,7 +147,7 @@ class ProduitController extends AbstractController
     }
 
 
-  
+
     // public function test($produitid)
     // {
     //     $em = $this->getDoctrine()->getManager();

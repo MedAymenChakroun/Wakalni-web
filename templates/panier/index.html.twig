@@ -47,7 +47,10 @@
 		<div class="col-md-8">
 			<div class="box-bg-white col-md-12">
 				<h3 class="section-title">Shopping Cart</h3>
+					 {% set tot = null %}
                      {% for panier in paniers %}
+					 {% set tot = tot + panier.quantite * panier.prixprod %}
+
 				<div class="row">
 					<div class="col-md-2 col-xs-6 less-padding-right">
 						<img src="{{ vich_uploader_asset(panier.produitid, 'image') }}" alt="{{ panier.produitid.nom }}" width="100%">
@@ -61,28 +64,36 @@
 					</div>
 
 					<div class="col-md-3 col-xs-7">
-						<p>Quantity</p>
+						<p>Quantite</p>
 						<form class="form-inline">
-							<div class="form-group pull-left">
+							{# <div class="form-group pull-left">
 								<button class="btn btn-default">-</button>
-							</div>
+							</div> #}
 							<div class="form-group pull-left">
-								<input type="number" class="form-control number-input" id="" value={{ panier.quantite}} style="width: 60px;">
+								<span style="margin-left:20px">{{ panier.quantite}}</span>
 							</div>
-							<div class="form-group">
+							{# <div class="form-group">
 								<button class="btn btn-default">+</button>
-							</div>
+							</div> #}
+
 						</form>
 					</div>
 					<div class="col-md-2 col-xs-5">
 						<p class="text-right">Subtotal</p>
 						<p class="text-right section-title">{{ panier.quantite * panier.prixprod }} DT</p>
+
+
+
 					</div>
                 </div>
 				{%else%}
                 <div>Votre panier est vide !</div>
                 {% endfor %}
 				<hr>
+				<div class="pull-right"><p class="text-right">Total</p>
+				<p class="text-right section-title" id="total">{{tot}}DT</p>
+
+</div>
 			</div>
 
 
@@ -115,5 +126,15 @@
 
 
 	<a href="{{ path('app_panier_new') }}">Create new</a>
+	<script type='text/javascript'>
+		
+					var x = {{tot}}
+					//document.getElementById("total").value;
+					localStorage.setItem('total', x);
+					document.cookie = "total" + "=" + x + ";";
+				
+
+ 
+	</script>
 	
 {% endblock %}

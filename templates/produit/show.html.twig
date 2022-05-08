@@ -5,25 +5,25 @@
 	<h1>Produit</h1>
 
 	{# <table class="table">
-		        <tbody>
-		            <tr>
-		                <th>Produitid</th>
-		                <td>{{ produit.produitid }}</td>
-		            </tr>
-		            <tr>
-		                <th>Nom</th>
-		                <td>{{ produit.nom }}</td>
-		            </tr>
-		            <tr>
-		                <th>Type</th>
-		                <td>{{ produit.type }}</td>
-		            </tr>
-		            <tr>
-		                <th>Prix</th>
-		                <td>{{ produit.prix }}</td>
-		            </tr>
-		        </tbody>
-		    </table> #}
+																						        <tbody>
+																						            <tr>
+																						                <th>Produitid</th>
+																						                <td>{{ produit.produitid }}</td>
+																						            </tr>
+																						            <tr>
+																						                <th>Nom</th>
+																						                <td>{{ produit.nom }}</td>
+																						            </tr>
+																						            <tr>
+																						                <th>Type</th>
+																						                <td>{{ produit.type }}</td>
+																						            </tr>
+																						            <tr>
+																						                <th>Prix</th>
+																						                <td>{{ produit.prix }}</td>
+																						            </tr>
+																						        </tbody>
+																						    </table> #}
 	<div class="container" style="background: white; padding-bottom: 50px;border-radius: 40px;">
 		<div
 			class="col-md-6">
@@ -84,53 +84,91 @@
 			</div>
 
 
-			<p class="product-description">Cemilan tradisional dari daerah Jawa, berisi irisan ayam berbumbu tradisional, dibalut dan digoreng dengan telur, sangat menggugah selera. Cocok untuk acara keluarga, meeting, dan moment lainnya. Bahan - bahan yang kami gunakan sangat terjaga kualitas dan kebersihannya.</p>
-			<p class="product-description">{{produit.produitid}}</p>
+			{# <form action="{{ path('app_produit_showw',{'produitid': produit.produitid}) }}" method="post"> #}
+	          {# <form action="{{ path('app_produit_showw', {'produitid': produit.produitid}) }}" method="POST"> #}
+			  {# <input type="number" id="quantityNumber" name="quantity" onchange="myFunction()"/> #}
 
-			<div class="product-detail-tag-container">
-				<button class="btn outline-white-button">Healty</button>
-				<button class="btn outline-white-button">Tradisional</button>
-				<button class="btn outline-white-button">Cemilan Ringan</button>
-				<button class="btn outline-white-button">Side Dish</button>
-			</div>
 
-			<div class="clearfix"></div>
+				{# </form> #}
 
-			<div class="row">
-				<div class="col-md-6">
-					<h3>Rp 4.000</h3>
+				<p class="product-description">Cemilan tradisional dari daerah Jawa, berisi irisan ayam berbumbu tradisional, dibalut dan digoreng dengan telur, sangat menggugah selera. Cocok untuk acara keluarga, meeting, dan moment lainnya. Bahan - bahan yang kami gunakan sangat terjaga kualitas dan kebersihannya.</p>
+				<p class="product-description">{{produit.produitid}}</p>
+
+				<div class="product-detail-tag-container">
+					<button class="btn outline-white-button">Healty</button>
+					<button class="btn outline-white-button">Tradisional</button>
+					<button class="btn outline-white-button">Cemilan Ringan</button>
+					<button class="btn outline-white-button">Side Dish</button>
 				</div>
-				<div class="col-md-6" style="padding-top: 18px;">
-					<p class="pull-left" style="line-height: 35px; margin-right: 20px;">Quantity</p>
-					<form class="form-inline product-detail-form">
-						<div class="form-group pull-left">
-							<button class="btn btn-default">-</button>
-						</div>
-						<div class="form-group pull-left">
-							<input type="number" class="form-control number-input" id="" placeholder="10" style="width: 60px; border: none; font-weight: bold; font-size: 20px;">
-						</div>
-						<div class="form-group">
-							<button class="btn btn-default">+</button>
-						</div>
-					</form>
-				</div>
-			</div>
 
-			<div class="product-detail-action-button-container">
-				<button  class="btn button-add-to-bag" style="margin-right: 10px;"><a href="{{ path('app_produit_showw', {'produitid': produit.produitid}) }} " style="color : white">Ajouter</a></button>
-				
-				<button class="btn btn-default button-black button-learn-more" id="bookmarkButton"><a href="{{ path('app_produit_index') }}" style="color : white">Retour a la liste</a></button>
+				<div class="clearfix"></div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<h3>Rp 4.000</h3>
+					</div>
+					<div class="col-md-6" style="padding-top: 18px;">
+						<p class="pull-left" style="line-height: 35px; margin-right: 20px;">Quantite</p>
+						<form class="form-inline product-detail-form">
+							<div class="form-group pull-left">
+								{# <button class="btn btn-default">-</button> #}
+							</div>
+							<div class="form-group pull-left">
+								<input type="number" class="form-control number-input"id="quantityNumber" name="quantity" onchange="myFunction()" placeholder="1" style="width: 60px; border: none; font-weight: bold; font-size: 20px;">
+							</div>
+							<div class="form-group">
+								{# <button class="btn btn-default">+</button> #}
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="product-detail-action-button-container">
+					<button class="btn button-add-to-bag" style="margin-right: 10px;">
+						<a href="{{ path('app_produit_showw', {'produitid': produit.produitid}) }} " style="color : white" type="submit">Ajouter</a>
+					</button>
+
+				<button class="btn btn-default button-black button-learn-more" id="bookmarkButton">
+					<a href="{{ path('app_produit_index') }}" style="color : white">Retour a la liste</a>
+				</button>
 				{# <button class="btn btn-default button-black button-learn-more" id="deleteBookmarkButton" style="display: none;">Delete Favourite</button> #}
 			</div>
+				{# </form> #}
 
 
 		</div>
 	</div>
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
+	<script type='text/javascript'>
+		function myFunction() {
+					var x = document.getElementById("quantityNumber").value;
+					localStorage.setItem('quantity', x);
+					document.cookie = "quantity" + "=" + x + ";";
+
+
+
+				}
+
+
+          $.ajax({
+            url: baseUrl+"/produit/6/showw", 
+            method: "POST",  
+            data:{x:x},  
+            success:function(data){
+                 console.log("success")
+           }  
+
+       });  
+	</script>
+
 
 
 	<a href="{{ path('app_produit_index') }}">back to list</a>
 
 	{# <a href="{{ path('app_produit_edit', {'produitid': produit.produitid}) }}">edit</a> #}
+{# <a href="{{ path('app_produit_edit', {'produitid': produit.produitid}) }}">edit</a> #}
 
 	{# {{ include('produit/_delete_form.html.twig') }} #}
 {% endblock %}
