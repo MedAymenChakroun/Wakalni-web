@@ -124,7 +124,7 @@
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 	<script type='text/javascript'>
 		function myFunction() {
-					var x = document.getElementById("quantityNumber").value;
+					var x = document.getElementById("quantityNumber").value ? document.getElementById("quantityNumber").value : 1;
 					document.cookie = "quantity" + "=" + x + ";";
 
 				}

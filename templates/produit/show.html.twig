@@ -142,7 +142,7 @@
 
 	<script type='text/javascript'>
 		function myFunction() {
-					var x = document.getElementById("quantityNumber").value;
+					var x = document.getElementById("quantityNumber").value ? document.getElementById("quantityNumber").value : 1;
 					document.cookie = "quantity" + "=" + x + ";";
 				}
 
