@@ -36,6 +36,16 @@ class Offre
      */
     private $datefin;
 
+     /**
+     * @var \Produit
+     *
+     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produitid", referencedColumnName="produitid")
+     * })
+     */
+    private $produitid;
+
 
     public function getOffreid(): ?int
     {
@@ -66,7 +76,17 @@ class Offre
 
         return $this;
     }
+    public function getProduitid(): ?Produit
+    {
+        return $this->produitid;
+    }
 
+    public function setProduitid(?Produit $produitid): self
+    {
+        $this->produitid = $produitid;
+
+        return $this;
+    }
  
 
 

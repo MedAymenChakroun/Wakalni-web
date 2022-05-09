@@ -1,41 +1,48 @@
-{% extends 'base-back.html.twig' %}
-
-{% block title %}Offre index{% endblock %}
-
+{% extends 'base-front.html.twig' %}
+{% block title %}Offre index
+	<style>
+		a {
+			color: inherit;
+		}
+	</style>
+{% endblock %}
 {% block body %}
-    <h1>Offre index</h1>
+	<h1>Liste des offres({{ offres|length }})
+	</h1>
+	<div
+		class="row">
+		{# <div class="col-md-12">
+					<p class="text-roboto-light">30 Products in Category
+						strong>Healthy</strong>
+					</p>
+				</div> #}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Offreid</th>
-                <th>Nom</th>
-                <th>Type</th>
-                <th>Prix</th>
-                <th>Datefin</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for offre in offres %}
-            <tr>
-                <td>{{ offre.offreid }}</td>
-                <td>{{ offre.nom }}</td>
-                <td>{{ offre.type }}</td>
-                <td>{{ offre.prix }}</td>
-                <td>{{ offre.datefin ? offre.datefin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_offre_show', {'offreid': offre.offreid}) }}">show</a>
-                    <a href="{{ path('app_offre_edit', {'offreid': offre.offreid}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_offre_new') }}">Create new</a>
+		<div class="caption box" style="background-color: unset !important">
+			{% for offre in offres %}
+				<div class="col-sm-2 col-md-3">
+					<a href="#" class="thumbnail thumbnail_item less-padding less-margin" style="background-color: unset !important">
+						<img src="{{ vich_uploader_asset(offre.produitid, 'image') }}" alt="{{ offre.produitid.nom }}">
+					</a>
+					<div class="row" style="margin-right: unset !important; margin-left: unset !important">
+						<div class="col-sm-6 col-md-6">
+							<h2 style="margin-top: -1px !important">{{ offre.produitid.nom }}</h2>
+							<p class="default-userProductList-CardList-price">{{ offre.produitid.type }}</p>
+							<span class="min-order">{{ offre.prix }}</span><br>
+                            <span class="min-order" style="font-weight:bold">{{ offre.datefin|date('D, h.i') }}</span>       
+						</div>
+						<div class="col-sm-6 col-xs-6">
+							<button class="btn default-userProductList-CardList-button pull-right" role="button" style="margin-top: 20px !important">
+							<a href="{{ path('app_offre_show', {'offreid': offre.offreid}) }}" style="color : white">Voir plus</a>
+							</button>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<div>
+					<p>no offers found</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<a href="{{ path('app_offre_new') }}">Create new</a>
 {% endblock %}

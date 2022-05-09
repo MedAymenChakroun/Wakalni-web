@@ -92,7 +92,6 @@
 				{# </form> #}
 
 				<p class="product-description">Cemilan tradisional dari daerah Jawa, berisi irisan ayam berbumbu tradisional, dibalut dan digoreng dengan telur, sangat menggugah selera. Cocok untuk acara keluarga, meeting, dan moment lainnya. Bahan - bahan yang kami gunakan sangat terjaga kualitas dan kebersihannya.</p>
-				<p class="product-description">{{produit.produitid}}</p>
 
 				<div class="product-detail-tag-container">
 					<button class="btn outline-white-button">Healty</button>
@@ -105,7 +104,7 @@
 
 				<div class="row">
 					<div class="col-md-6">
-						<h3>Rp 4.000</h3>
+						<h3>{{ produit.prix}} TND</h3>
 					</div>
 					<div class="col-md-6" style="padding-top: 18px;">
 						<p class="pull-left" style="line-height: 35px; margin-right: 20px;">Quantite</p>
@@ -144,13 +143,8 @@
 	<script type='text/javascript'>
 		function myFunction() {
 					var x = document.getElementById("quantityNumber").value;
-					localStorage.setItem('quantity', x);
 					document.cookie = "quantity" + "=" + x + ";";
-
-
-
 				}
-
 
           $.ajax({
             url: baseUrl+"/produit/6/showw", 

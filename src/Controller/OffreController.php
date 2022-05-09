@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Offre;
 use App\Form\OffreType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,6 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Commande;
+use App\Entity\Panier;
+use App\Entity\Produit;
+use App\Form\PanierType;
 
 /**
  * @Route("/offre")
@@ -92,5 +95,29 @@ class OffreController extends AbstractController
         }
 
         return $this->redirectToRoute('app_offre_index', [], Response::HTTP_SEE_OTHER);
+    }
+       /**
+     * @Route("/{offreid}/showw", name="app_offre_showw", methods={"GET", "POST"})
+     */
+    public function getSqlResult(EntityManagerInterface $em, Offre $offre, EntityManagerInterface $entityManager, Request $request)
+    {
+
+            $x= $_COOKIE['quantity'];
+            $int_value = intval( $x );
+        $id = $offre->getProduitid();
+        $idp = $id->getProduitid();
+        $prix = $offre->getPrix() * $int_value ;
+        $sql = " INSERT INTO Panier(produitid,clientid,quantite,prixprod)
+        VALUES ($idp,1,$int_value ,$prix);";
+
+        $stmt = $em->getConnection()->prepare($sql);
+        $result = $stmt->executeQuery();
+        $paniers = $entityManager
+            ->getRepository(Panier::class)
+            ->findAll();
+        return $this->render('panier/index.html.twig', [
+            'paniers' => $paniers,
+            // 'total' => $total
+        ]);
     }
 }
