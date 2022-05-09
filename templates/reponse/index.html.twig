@@ -1,0 +1,35 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Reponse {% endblock %}
+
+{% block body %}
+    <h1>Reponse index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reponseid</th>
+                <th>Reponse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse in reponses %}
+            <tr>
+                <td>{{ reponse.reponseid }}</td>
+                <td>{{ reponse.reponse }}</td>
+                <td>
+                    <button><a href="{{ path('app_reponse_show', {'reponseid': reponse.reponseid}) }}">show</a></button>
+                    <button><a href="{{ path('app_reponse_edit', {'reponseid': reponse.reponseid}) }}">edit</a></button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button> <a href="{{ path('app_reclamation_index') }}">back to reclamation</a></button>
+{#    <a href="{{ path('app_reponse_new') }}">Create new</a>#}
+{% endblock %}
