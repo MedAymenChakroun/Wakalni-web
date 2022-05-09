@@ -48,7 +48,10 @@
 			<div class="box-bg-white col-md-12">
 				<h3 class="section-title">Shopping Cart</h3>
 					 {% set tot = null %}
+					 {% set pid = null %}
+
                      {% for panier in paniers %}
+					 {% set pid = panier.panierid %}
 					 {% set tot = tot + panier.quantite * panier.prixprod %}
 
 				<div class="row">
@@ -99,7 +102,7 @@
 
             
 
-			<a href="/checkout" class="btn btn-default pull-right button-black">Continue to checkout</a>
+			<a href="{{ path('app_panier_chekcout') }}" class="btn btn-default pull-right button-black">Continue to checkout</a>
 			<div class="clearfix maya-small-padding"></div>
 		</div>
 
@@ -128,11 +131,11 @@
 	<a href="{{ path('app_panier_new') }}">Create new</a>
 	<script type='text/javascript'>
 		
-					var x = {{tot}}
+					let x = {{tot}}
+					let y = {{pid}} ? {{pid}} : "doesnt exist" 
 					//document.getElementById("total").value;
-					localStorage.setItem('total', x);
 					document.cookie = "total" + "=" + x + ";";
-				
+					document.cookie = "panierid" + "=" + y + ";";
 
  
 	</script>

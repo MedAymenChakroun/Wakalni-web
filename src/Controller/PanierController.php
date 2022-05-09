@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Form\PanierType;
@@ -106,22 +107,22 @@ class PanierController extends AbstractController
 
 
      /**
-     * @Route("/checkout", name="app_panier_chekcout", methods={"GET"})
+     * @Route("/checkout", name="app_panier_chekcout", methods={"GET", "POST"})
      */
     public function checkout(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    {   $timestamp = date('Y-m-d H:i:s');
+        $timestampu = date('Y-m-d H:i:s', strtotime("+15 minutes"));
+        $timestampp = date('Y-m-d H:i:s', strtotime("+1 hours"));
+        $y= $_COOKIE['panierid'];
+        $y_value = intval( $y );
+     
+             $sql = " INSERT INTO commande(datecreation,dateexpedition,datearrivee,clientid,livreurid,panierid)
+             VALUES ('$timestamp' ,'$timestampu' ,'$timestampp',1,2,$y_value);";
+    
+             $stmt = $entityManager->getConnection()->prepare($sql);
+             $result = $stmt->executeQuery();
 
-                $paniers = $entityManager
-            ->getRepository(Panier::class)
-            ->findAll();
-        
 
-
-       if($_COOKIE['total']){
-           print_r("works fine");
-       }else{
-        print_r("doesnt work");
-       }
             
         $x= $_COOKIE['total'];
         $int_value = intval( $x );

@@ -21,19 +21,6 @@ class Offre
      */
     private $offreid;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=30, nullable=false)
-     */
-    private $nom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=30, nullable=false)
-     */
-    private $type;
 
     /**
      * @var float
@@ -43,50 +30,18 @@ class Offre
     private $prix;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @ORM\Column(name="datefin", type="datetime", nullable=false)
      */
     private $datefin;
 
-    /**
-     * @var \Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="crid", referencedColumnName="id")
-     * })
-     */
-    private $crid;
 
     public function getOffreid(): ?int
     {
         return $this->offreid;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     public function getPrix(): ?float
     {
@@ -112,17 +67,7 @@ class Offre
         return $this;
     }
 
-    public function getCrid(): ?Utilisateur
-    {
-        return $this->crid;
-    }
-
-    public function setCrid(?Utilisateur $crid): self
-    {
-        $this->crid = $crid;
-
-        return $this;
-    }
+ 
 
 
 }

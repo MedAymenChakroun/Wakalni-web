@@ -42,26 +42,7 @@ class Commande
      */
     private $datearrivee;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nomclient", type="string", length=11, nullable=false)
-     */
-    private $nomclient;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nomlivreur", type="string", length=11, nullable=false)
-     */
-    private $nomlivreur;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nomresto", type="string", length=11, nullable=false)
-     */
-    private $nomresto;
 
     /**
      * @var \Panier
@@ -93,15 +74,6 @@ class Commande
      */
     private $livreurid;
 
-    /**
-     * @var \Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="rcid", referencedColumnName="id")
-     * })
-     */
-    private $rcid;
 
     public function getCommandeid(): ?int
     {
@@ -144,41 +116,8 @@ class Commande
         return $this;
     }
 
-    public function getNomclient(): ?string
-    {
-        return $this->nomclient;
-    }
 
-    public function setNomclient(string $nomclient): self
-    {
-        $this->nomclient = $nomclient;
 
-        return $this;
-    }
-
-    public function getNomlivreur(): ?string
-    {
-        return $this->nomlivreur;
-    }
-
-    public function setNomlivreur(string $nomlivreur): self
-    {
-        $this->nomlivreur = $nomlivreur;
-
-        return $this;
-    }
-
-    public function getNomresto(): ?string
-    {
-        return $this->nomresto;
-    }
-
-    public function setNomresto(string $nomresto): self
-    {
-        $this->nomresto = $nomresto;
-
-        return $this;
-    }
 
     public function getPanierid(): ?Panier
     {
@@ -216,17 +155,7 @@ class Commande
         return $this;
     }
 
-    public function getRcid(): ?Utilisateur
-    {
-        return $this->rcid;
-    }
-
-    public function setRcid(?Utilisateur $rcid): self
-    {
-        $this->rcid = $rcid;
-
-        return $this;
-    }
+   
     public function __toString()
     {
         return $this->commandeid;
