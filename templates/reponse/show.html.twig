@@ -1,16 +1,13 @@
-<!DOCTYPE html>
+{% extends 'base-back.html.twig' %}
 
-<title>Reponse</title>
+{% block title %}Reponse{% endblock %}
 
 {% block body %}
     <h1>Reponse</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Reponseid</th>
-                <td>{{ reponse.reponseid }}</td>
-            </tr>
+
             <tr>
                 <th>Reponse</th>
                 <td>{{ reponse.reponse }}</td>
@@ -18,9 +15,11 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_reponse_index') }}">back to list</a>
+    {# <button> <a href="{{ path('app_reponse_index') }}">back to list</a></button>#}
 
-    <a href="{{ path('app_reponse_edit', {'reponseid': reponse.reponseid}) }}">edit</a>
+    <button> <a href="{{ path('app_reclamation_show',{'reclamationid':reponse.reclamationid.reclamationid}) }}">back to reclamation</a></button>
+
+    <button> <a href="{{ path('app_reponse_edit', {'reponseid': reponse.reponseid}) }}">edit</a></button>
 
     {{ include('reponse/_delete_form.html.twig') }}
 {% endblock %}

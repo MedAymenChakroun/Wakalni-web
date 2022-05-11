@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Repository\ReponseRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Reponse
  *
  * @ORM\Table(name="reponse", indexes={@ORM\Index(name="fkreponse", columns={"reclamationid"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ReponseRepository::class)
  */
 class Reponse
 {
@@ -38,29 +39,29 @@ class Reponse
      */
     private $reclamationid;
 
-    public function getReponseid(): ?int
+    public function getReponseid()
     {
         return $this->reponseid;
     }
 
-    public function getReponse(): ?string
+    public function getReponse()
     {
         return $this->reponse;
     }
 
-    public function setReponse(string $reponse): self
+    public function setReponse($reponse): self
     {
         $this->reponse = $reponse;
 
         return $this;
     }
 
-    public function getReclamationid(): ?Reclamation
+    public function getReclamationid()
     {
         return $this->reclamationid;
     }
 
-    public function setReclamationid(?Reclamation $reclamationid): self
+    public function setReclamationid( $reclamationid): self
     {
         $this->reclamationid = $reclamationid;
 

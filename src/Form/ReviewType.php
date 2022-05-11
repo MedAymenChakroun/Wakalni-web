@@ -14,8 +14,8 @@ class ReviewType extends AbstractType
         $builder
             ->add('note')
             ->add('commentaire')
-            /*->add('produitid')
-            ->add('utilisateurid')*/
+           /* ->add('utilisateurid')
+            ->add('produitid')*/
         ;
     }
 

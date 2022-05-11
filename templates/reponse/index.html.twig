@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+{% extends 'base-back.html.twig' %}
 
-<title>Reponse index</title>
+{% block title %}Reponse {% endblock %}
 
 {% block body %}
     <h1>Reponse index</h1>
@@ -19,8 +19,8 @@
                 <td>{{ reponse.reponseid }}</td>
                 <td>{{ reponse.reponse }}</td>
                 <td>
-                    <a href="{{ path('app_reponse_show', {'reponseid': reponse.reponseid}) }}">show</a>
-                    <a href="{{ path('app_reponse_edit', {'reponseid': reponse.reponseid}) }}">edit</a>
+                    <button><a href="{{ path('app_reponse_show', {'reponseid': reponse.reponseid}) }}">show</a></button>
+                    <button><a href="{{ path('app_reponse_edit', {'reponseid': reponse.reponseid}) }}">edit</a></button>
                 </td>
             </tr>
         {% else %}
@@ -30,6 +30,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_reponse_new') }}">Create new</a>
+    <button> <a href="{{ path('app_reclamation_index') }}">back to reclamation</a></button>
+{#    <a href="{{ path('app_reponse_new') }}">Create new</a>#}
 {% endblock %}

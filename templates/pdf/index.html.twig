@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Example 3</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+</head>
+<body>
+<main>
+    <h1  class="clearfix"> Liste des utilisateurs </h1>
+    <table>
+        <thead>
+        <tr>
+            <th class="service">nom et prenom</th>
+            <th class="desc">email</th>
+            <th>age</th>
+            <th>Numero telephone</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>{% for user in users %}
+            <td class="service">{{ user.firstname }} {{ user.lastname }}</td>
+            <td class="desc">{{ user.email }}</td>
+            <td class="unit">{{ user.age }}</td>
+            <td class="qty">{{ user.phonenumber }}</td>
+            <td class="total">{{ user.role[0] }}</td>
+        </tr>{% endfor %}
+        </tbody>
+    </table>
+    <div id="details" class="clearfix">
+        <div id="project">
+            <div class="arrow"><div class="inner-arrow"><span>Moyenne des ages</span>{{ avg }}</div></div>
+            <div class="arrow"><div class="inner-arrow"><span>Nombre des utilisateurs</span> {{ count }}</div></div>
+            <div class="arrow"><div class="inner-arrow"><span>Age minimal</span> {{ min }}</div></div>
+            <div class="arrow"><div class="inner-arrow"><span>Age maximal</span> <a>{{ max }}</a></div></div>
+        </div>
+        <div id="company">
+            <div class="arrow back"><div class="inner-arrow">WAKALNI <span>COMPANY</span></div></div>
+            <div class="arrow back"><div class="inner-arrow">1, 2 rue André Ampère - 2083 - Pôle Technologique - El Ghazala <span>ADDRESS</span></div></div>
+            <div class="arrow back"><div class="inner-arrow">+216 26 281 919 <span>PHONE</span></div></div>
+            <div class="arrow back"><div class="inner-arrow"><a href="mailto:company@example.com">wakalni@wakalni.com</a> <span>EMAIL</span></div></div>
+        </div>
+    </div>
+</main>
+<footer>
+</footer>
+</body>
+</html>

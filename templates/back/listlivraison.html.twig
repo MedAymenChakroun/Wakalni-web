@@ -1,0 +1,55 @@
+{% extends 'backbase.html.twig' %}
+
+{% block title %}List des Livraisons{% endblock %}
+
+{% block body %}
+<html>
+
+<body>
+
+<style>
+
+
+</style>
+<h1>List des Livraisons</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID Commande</th>
+        <th>Nom Client</th>
+        <th>Nom Livreur</th>
+        <th>Telephone Client</th>
+        <th>Date de creation</th>
+        <th>Date d'expiration</th>
+        <th>Progres</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for livraison in l %}
+        <tr>
+            <td>{{ livraison.idcommande.id}}</td>
+            <td>{{ livraison.idcommande.clientid.firstname }} {{ livraison.idcommande.clientid.lastname }}</td>
+            <td>{{ livraison.idlivreur.firstname }} {{ livraison.idlivreur.lastname }}</td>
+            <td>{{ livraison.idcommande.clientid.phonenumber }}</td>
+            <td>{{ livraison.idcommande.datecreation.format('y-m-d h:m:s') }}</td>
+            <td>{{ livraison.idcommande.dateexpiration.format('y-m-d h:m:s') }}</td>
+            <td>{% if livraison.progress==1 %} Livraison Complete {% else %} Livraison En cours {% endif %}</td>
+            <td>
+                <a href="{{ path('Livraison_edit',{'id':livraison.id}) }}">edit</a>
+            </td>
+            <td>
+                <a>  {{ include('back/delete_livraison.html.twig') }} </a>
+            </td>
+
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

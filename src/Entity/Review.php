@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Repository\ReviewRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Review
  *
  * @ORM\Table(name="review", indexes={@ORM\Index(name="fkclientreview", columns={"utilisateurid"}), @ORM\Index(name="fkproduitreview", columns={"produitid"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ReviewRepository::class)
  */
 class Review
 {
@@ -23,6 +24,8 @@ class Review
 
     /**
      * @var int
+     * @Assert\NotBlank(message=" non vide")
+     * @Assert\Positive
      *
      * @ORM\Column(name="note", type="integer", nullable=false)
      */
@@ -30,20 +33,11 @@ class Review
 
     /**
      * @var string
+     * @Assert\NotBlank(message=" non vide")
      *
      * @ORM\Column(name="commentaire", type="text", length=65535, nullable=false)
      */
     private $commentaire;
-
-    /**
-     * @var \Produit
-     *
-     * @ORM\ManyToOne(targetEntity="Produit")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="produitid", referencedColumnName="produitid")
-     * })
-     */
-    private $produitid;
 
     /**
      * @var \Utilisateur
@@ -55,55 +49,65 @@ class Review
      */
     private $utilisateurid;
 
-    public function getReviewid(): ?int
+    /**
+     * @var \Produit
+     *
+     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produitid", referencedColumnName="produitid")
+     * })
+     */
+    private $produitid;
+
+    public function getReviewid()
     {
         return $this->reviewid;
     }
 
-    public function getNote(): ?int
+    public function getNote()
     {
         return $this->note;
     }
 
-    public function setNote(int $note): self
+    public function setNote( $note): self
     {
         $this->note = $note;
 
         return $this;
     }
 
-    public function getCommentaire(): ?string
+    public function getCommentaire()
     {
         return $this->commentaire;
     }
 
-    public function setCommentaire(string $commentaire): self
+    public function setCommentaire( $commentaire): self
     {
         $this->commentaire = $commentaire;
 
         return $this;
     }
 
-    public function getProduitid(): ?Produit
-    {
-        return $this->produitid;
-    }
-
-    public function setProduitid(?Produit $produitid): self
-    {
-        $this->produitid = $produitid;
-
-        return $this;
-    }
-
-    public function getUtilisateurid(): ?Utilisateur
+    public function getUtilisateurid()
     {
         return $this->utilisateurid;
     }
 
-    public function setUtilisateurid(?Utilisateur $utilisateurid): self
+    public function setUtilisateurid( $utilisateurid): self
     {
         $this->utilisateurid = $utilisateurid;
+
+        return $this;
+    }
+
+    public function getProduitid()
+    {
+        return $this->produitid;
+    }
+
+    public function setProduitid( $produitid): self
+    {
+        $this->produitid = $produitid;
 
         return $this;
     }

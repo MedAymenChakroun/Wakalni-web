@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Commande;
 use App\Entity\Reclamation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ReclamationType extends AbstractType
 {
@@ -14,8 +16,11 @@ class ReclamationType extends AbstractType
         $builder
             ->add('sujet')
             ->add('contenu')
-           /* ->add('clientid')
-            ->add('commandeid')*/
+
+            ->add('commandeid',EntityType::class,[
+                'class'=>Commande::class,
+                'choice_label'=>'commandeid'])
+           /* ->add('clientid')*/
         ;
     }
 

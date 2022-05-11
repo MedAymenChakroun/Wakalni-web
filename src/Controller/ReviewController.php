@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Review;
+use App\Repository\ReviewRepository;
+use App\Entity\Utilisateur;
 use App\Form\ReviewType;
-use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,27 +20,30 @@ class ReviewController extends AbstractController
     /**
      * @Route("/", name="app_review_index", methods={"GET"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager, ReviewRepository $r): Response
     {
         $reviews = $entityManager
             ->getRepository(Review::class)
             ->findAll();
+        $reviewbyid=$r->listByOrder();
 
         return $this->render('review/index.html.twig', [
-            'reviews' => $reviews,
+            'reviews' => $reviewbyid,
         ]);
     }
 
     /**
-     * @Route("/new/{id}", name="app_review_new", methods={"GET", "POST"})
+     * @Route("/new", name="app_review_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager,$id, ProduitRepository  $repository): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
+        $user=$this->getDoctrine()->getRepository(Utilisateur::class)->find(10);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $review->setUtilisateurid($user);
             $entityManager->persist($review);
             $entityManager->flush();
 

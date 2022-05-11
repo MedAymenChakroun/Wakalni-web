@@ -44,6 +44,22 @@ class ReclamationRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    public function listByOrder()
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.contenu','ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findRecBysujet($sujet){
+        return $this->createQueryBuilder('Reclam')
+            ->where('reclamation.sujet LIKE :sujet')
+            ->setParameter('sujet', '%'.$sujet.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
 
     // /**
     //  * @return Reclamation[] Returns an array of Reclamation objects

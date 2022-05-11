@@ -44,6 +44,13 @@ class ReviewRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    public function listByOrder()
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.reviewid','DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
     // /**
     //  * @return Review[] Returns an array of Review objects

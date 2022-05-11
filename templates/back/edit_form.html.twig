@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+
+
+        {{ form_row(form.firstname, {'attr': {'class': 'form-control form-control-user'}}) }}
+        {{ form_row(form.lastname, {'attr': {'class': 'form-control form-control-user'}}) }}
+        {{ form_row(form.email, {'attr': {'class': 'form-control form-control-user'}}) }}
+        {{ form_row(form.age, {'attr': {'class': 'form-control form-control-user'}}) }}
+        {{ form_row(form.phonenumber, {'attr': {'class': 'form-control form-control-user'}}) }}
+        {{ form_row(form.image) }}
+
+<button type="submit" class="btn btn-primary">Save</button>
+{{ form_end(form) }}

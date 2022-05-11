@@ -1,24 +1,24 @@
-<!DOCTYPE html>
+{% extends 'base-front.html.twig' %}
 
-<title>Review</title>
+{% block title %}Review{% endblock %}
 
 {% block body %}
     <h1>Review</h1>
-
+    {{ dump(user) }}
     <table class="table">
         <tbody>
-            <tr>
-                <th>Reviewid</th>
-                <td>{{ review.reviewid }}</td>
-            </tr>
-            <tr>
-                <th>Note</th>
-                <td>{{ review.note }}</td>
-            </tr>
-            <tr>
-                <th>Commentaire</th>
-                <td>{{ review.commentaire }}</td>
-            </tr>
+        <tr>
+            <th>Reviewid</th>
+            <td>{{ review.reviewid }}</td>
+        </tr>
+        <tr>
+            <th>Note</th>
+            <td>{{ review.note }}</td>
+        </tr>
+        <tr>
+            <th>Commentaire</th>
+            <td>{{ review.commentaire }}</td>
+        </tr>
         </tbody>
     </table>
 

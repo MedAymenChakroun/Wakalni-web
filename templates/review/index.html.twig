@@ -1,23 +1,22 @@
-<!DOCTYPE html>
+{% extends 'base-back.html.twig' %}
 
-<title>Review index</title>
+{% block title %}Review index{% endblock %}
 
 {% block body %}
     <h1>Review index</h1>
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Reviewid</th>
-                <th>Note</th>
-                <th>Commentaire</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+
+            <th>Note</th>
+            <th>Commentaire</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for review in reviews %}
             <tr>
-                <td>{{ review.reviewid }}</td>
                 <td>{{ review.note }}</td>
                 <td>{{ review.commentaire }}</td>
                 <td>

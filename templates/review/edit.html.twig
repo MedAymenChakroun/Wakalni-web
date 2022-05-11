@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+{% extends 'base-front.html.twig' %}
 
-<title>Edit Review</title>
+{% block title %}Edit Review{% endblock %}
 
 {% block body %}
     <h1>Edit Review</h1>
+    {{ form_widget(form) }}
+
+
 
     {{ include('review/_form.html.twig', {'button_label': 'Update'}) }}
 
