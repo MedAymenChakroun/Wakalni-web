@@ -31,9 +31,9 @@ class Panier
  
     
     /**
-     * @var \Utilisateur
+     * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="clientid", referencedColumnName="id")
      * })
@@ -102,12 +102,12 @@ class Panier
         return $this;
     }
 
-    public function getClientid(): ?Utilisateur
+    public function getClientid(): ?User
     {
         return $this->clientid;
     }
 
-    public function setClientid(?Utilisateur $clientid): self
+    public function setClientid(?User $clientid): self
     {
         $this->clientid = $clientid;
 

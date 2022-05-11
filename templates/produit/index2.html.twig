@@ -1,0 +1,85 @@
+{% extends 'base-back.html.twig' %}
+{% block title %}Produit index
+	<style>
+		a {
+			color: inherit;
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	<h1>Liste de produit({{ produits|length }})
+	</h1>
+
+
+	{# <table class="table">
+		        <thead>
+		            <tr>
+		                <th>Produitid</th>
+		                <th>Nom</th>
+		                <th>Type</th>
+		                <th>Prix</th>
+		                <th>actions</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		        {% for produit in produits %}
+		            <tr>
+		                <td>{{ produit.produitid }}</td>
+		                <td>{{ produit.nom }}</td>
+		                <td>{{ produit.type }}</td>
+		                <td>{{ produit.prix }}</td>
+		                <td>
+		                    <a href="{{ path('app_produit_show', {'produitid': produit.produitid}) }}">show</a>
+		                    <a href="{{ path('app_produit_edit', {'produitid': produit.produitid}) }}">edit</a>
+		                </td>
+		            </tr>
+		        {% else %}
+		            <tr>
+		                <td colspan="5">no records found</td>
+		            </tr>
+		        {% endfor %}
+		        </tbody>
+		    </table> #}
+
+
+	<div
+		class="row">
+		{# <div class="col-md-12">
+					<p class="text-roboto-light">30 Products in Category
+						strong>Healthy</strong>
+					</p>
+				</div> #}
+
+		<div class="caption box" style="background-color: unset !important">
+			{% for produit in produits %}
+				<div class="col-sm-2 col-md-3">
+					<a href="#" class="thumbnail thumbnail_item less-padding less-margin" style="background-color: unset !important">
+						<img src="{{ vich_uploader_asset(produit, 'image') }}" alt="{{ produit.nom }}">
+					</a>
+					<div class="row" style="margin-right: unset !important; margin-left: unset !important">
+						<div class="col-sm-6 col-md-6">
+							<h2 style="margin-top: -1px !important">{{ produit.nom }}</h2>
+							<p class="default-userProductList-CardList-price">{{ produit.type }}</p>
+							<span class="min-order">{{ produit.prix }}</span>
+						</div>
+
+						<div class="col-sm-6 col-xs-6">
+							<button class="btn default-userProductList-CardList-button pull-right" role="button" style="margin-top: 20px !important">
+								<a href="{{ path('app_produit_show', {'produitid': produit.produitid}) }}" style="color : white">Voir plus</a>
+							</button>
+
+
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<div>
+					<p>no products found</p>
+				</div>
+			{% endfor %}
+
+		</div>
+	</div>
+
+	<a href="{{ path('app_produit_new') }}">Create new</a>
+{% endblock %}

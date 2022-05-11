@@ -67,9 +67,9 @@ class Leftovers
     private $dateexpiration;
 
     /**
-     * @var \Utilisateur
+     * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="chefrestoid", referencedColumnName="id")
      * })
@@ -132,17 +132,17 @@ class Leftovers
     }
 
     /**
-     * @return Utilisateur
+     * @return User
      */
-    public function getChefrestoid(): ?Utilisateur
+    public function getChefrestoid(): ?User
     {
         return $this->chefrestoid;
     }
 
     /**
-     * @param Utilisateur $chefrestoid
+     * @param User $chefrestoid
      */
-    public function setChefrestoid(?Utilisateur $chefrestoid): void
+    public function setChefrestoid(?User $chefrestoid): void
     {
         $this->chefrestoid = $chefrestoid;
     }

@@ -56,14 +56,14 @@ class Reclamation
      * @var \Commande
      * @ORM\ManyToOne(targetEntity="Commande")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="commandeid", referencedColumnName="commandeid")
+     *   @ORM\JoinColumn(name="commandeid", referencedColumnName="id")
      * })
      */
     private $commandeid;
 
     /**
-     * @var \Utilisateur
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @var \User
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="clientid", referencedColumnName="id")
      * })

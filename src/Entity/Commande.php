@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commande
  *
- * @ORM\Table(name="commande", indexes={@ORM\Index(name="fkpanier", columns={"panierid"}), @ORM\Index(name="fkclient", columns={"clientid"}), @ORM\Index(name="fklivreur", columns={"livreurid"}), @ORM\Index(name="fkrc", columns={"rcid"})})
+ * @ORM\Table(name="commande", indexes={@ORM\Index(name="fkpanier", columns={"panierid"}), @ORM\Index(name="fkclient", columns={"clientid"}),@ORM\Index(name="fkrc", columns={"rcid"})})
  * @ORM\Entity
  */
 class Commande
@@ -15,7 +15,7 @@ class Commande
     /**
      * @var int
      *
-     * @ORM\Column(name="commandeid", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -55,24 +55,16 @@ class Commande
     private $panierid;
 
     /**
-     * @var \Utilisateur
+     * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="clientid", referencedColumnName="id")
      * })
      */
     private $clientid;
 
-    /**
-     * @var \Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="livreurid", referencedColumnName="id")
-     * })
-     */
-    private $livreurid;
+   
 
 
     public function getCommandeid(): ?int
@@ -131,29 +123,19 @@ class Commande
         return $this;
     }
 
-    public function getClientid(): ?Utilisateur
+    public function getClientid(): ?User
     {
         return $this->clientid;
     }
 
-    public function setClientid(?Utilisateur $clientid): self
+    public function setClientid(?User $clientid): self
     {
         $this->clientid = $clientid;
 
         return $this;
     }
 
-    public function getLivreurid(): ?Utilisateur
-    {
-        return $this->livreurid;
-    }
-
-    public function setLivreurid(?Utilisateur $livreurid): self
-    {
-        $this->livreurid = $livreurid;
-
-        return $this;
-    }
+    
 
    
     public function __toString()

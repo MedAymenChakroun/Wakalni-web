@@ -12,11 +12,9 @@ class OffreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('type')
+            ->add('produitid')
             ->add('prix')
             ->add('datefin')
-            ->add('crid')
         ;
     }
 

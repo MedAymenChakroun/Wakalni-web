@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Commande;
 use App\Entity\Reclamation;
 use App\Entity\Reponse;
-use App\Entity\Utilisateur;
+use App\Entity\User;
 use App\Form\ReclamationType;
 use App\Repository\CommandeRepository;
 use App\Repository\ReclamationRepository;
@@ -84,7 +84,7 @@ class ReclamationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $user = $entityManager
-                ->getRepository(Utilisateur::class)
+                ->getRepository(User::class)
                 ->find(1);
             $reclamation->setClientid($user);
             $entityManager->persist($reclamation);

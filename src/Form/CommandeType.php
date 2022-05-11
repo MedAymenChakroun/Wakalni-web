@@ -19,7 +19,6 @@ class CommandeType extends AbstractType
             ->add('nomclient')
             ->add('nomlivreur')
             ->add('nomresto')
-            ->add('livreurid')
             ->add('rcid')
             ->add('clientid')
             ->add('panierid')

@@ -54,9 +54,9 @@ class Produit
     private $image;
 
     /**
-     * @var \Utilisateur
+     * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="crid", referencedColumnName="id")
      * })
@@ -134,12 +134,12 @@ class Produit
         return $this->image;
     }
 
-    public function getCrid(): ?Utilisateur
+    public function getCrid(): ?User
     {
         return $this->crid;
     }
 
-    public function setCrid(?Utilisateur $crid): self
+    public function setCrid(?User $crid): self
     {
         $this->crid = $crid;
 

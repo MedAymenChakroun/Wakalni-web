@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommandeController extends AbstractController
 {
     /**
-     * @Route("/", name="app_commande_index", methods={"GET"})
+     * @Route("/back", name="app_commande_index", methods={"GET"})
      */
     public function index(EntityManagerInterface $entityManager): Response
     {

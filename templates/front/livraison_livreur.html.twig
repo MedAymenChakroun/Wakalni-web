@@ -17,7 +17,7 @@
                          src="{{ asset('uploads_directory/'~livraison.idcommande.clientid.image) }}" width="100%">
                 </div>
                 <div class="col-md-5 col-xs-12">
-                    <span>ID Commande : {{ livraison.idcommande.id }} </span><br/>
+                    <span>ID Commande : {{ livraison.idcommande.commandeid }} </span><br/>
                     <p class="text-gray-3 text-thin">Client name: {{ livraison.idcommande.clientid.firstname }} {{ livraison.idcommande.clientid.lastname }}</p>
                     <p class="section-title">Client phone number : {{ livraison.idcommande.clientid.phonenumber }}</p>
                     <a href="{{ path('livraison_delete', {'id': livraison.id}) }}" class="btn btn-default outline-default-button outline-small-default-button" >Annuler</a>

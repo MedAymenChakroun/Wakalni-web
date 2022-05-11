@@ -17,12 +17,12 @@ use App\Form\PanierType;
 
 
 /**
- * @Route("/produit")
+ * @Route("/produitback")
  */
-class ProduitController extends AbstractController
+class ProduitControllerBack extends AbstractController
 {
     /**
-     * @Route("/", name="app_produit_index", methods={"GET"})
+     * @Route("/", name="app_backproduit_index", methods={"GET"})
      */
     public function index(EntityManagerInterface $entityManager): Response
     {
@@ -30,13 +30,13 @@ class ProduitController extends AbstractController
             ->getRepository(Produit::class)
             ->findAll();
 
-        return $this->render('produit/index.html.twig', [
+        return $this->render('produit/index2.html.twig', [
             'produits' => $produits,
         ]);
     }
 
     /**
-     * @Route("/new", name="app_produit_new", methods={"GET", "POST"})
+     * @Route("/new", name="app_backproduit_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -57,7 +57,7 @@ class ProduitController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{produitid}", name="app_produit_show", methods={"GET"})
+     * @Route("/{produitid}", name="app_backproduit_show", methods={"GET"})
      */
     public function show(Produit $produit, LoggerInterface $logger): Response
     {
@@ -98,25 +98,11 @@ class ProduitController extends AbstractController
 
 
 
-    /**
-     * @Route("/{produitid}", name="app_produit_panier", methods={"GET"})
-     */
-    // public function data(Produit $produit, LoggerInterface $logger): Response
-    // {   
-
-
-
-
-    //       return $this->render('produit/show.html.twig', [
-    //         'produit' => $produit,
-
-    //     ]);
-
-    // }
+   
 
 
     /**
-     * @Route("/{produitid}/edit", name="app_produit_edit", methods={"GET", "POST"})
+     * @Route("/{produitid}/edit", name="app_backproduit_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
@@ -136,7 +122,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/{produitid}", name="app_produit_delete", methods={"POST"})
+     * @Route("/{produitid}", name="app_backproduit_delete", methods={"POST"})
      */
     public function delete(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {

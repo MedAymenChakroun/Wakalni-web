@@ -29,7 +29,7 @@ class Livraison
     /**
      * @ORM\ManyToOne(targetEntity="Commande")
      * @ORM\JoinColumns({
-     *      @ORM\JoinColumn(name="commandeid", referencedColumnName="id")
+     *      @ORM\JoinColumn(name="commandeid", referencedColumnName="commandeid")
      * })
      * @ORM\JoinColumn(nullable=false)
      */

@@ -24,13 +24,13 @@
     <tbody>
     {% for commande in c %}
         <tr>
-            <td>{{ commande.id}}</td>
+            <td>{{ commande.commandeid}}</td>
             <td>{{ commande.datecreation.format('Y-m-d') }}</td>
-            <td>{{ commande.dateexpiration.format('Y-m-d') }}</td>
+            <td>{{ commande.dateexpedition.format('Y-m-d') }}</td>
             <td>{{ commande.clientid.email }}</td>
             <td>{{ commande.clientid.phonenumber }}</td>
             <td>
-                <a href="{{ path('livrer', {'id': commande.id}) }}">Livrer</a>
+                <a href="{{ path('livrer', {'id': commande.commandeid}) }}">Livrer</a>
             </td>
 
         </tr>

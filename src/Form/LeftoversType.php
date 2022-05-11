@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Leftovers;
+use App\Entity\User;
 use App\Entity\Utilisateur;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -19,8 +20,8 @@ class LeftoversType extends AbstractType
             ->add('quantite')
             ->add('dateexpiration')
             ->add('chefrestoid', EntityType::class,[
-                'class' => Utilisateur::class,
-                'choice_label' => 'nom',
+                'class' => User::class,
+                'choice_label' => 'firstname',
             ])
         ;
     }

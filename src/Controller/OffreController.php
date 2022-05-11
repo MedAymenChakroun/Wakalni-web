@@ -106,9 +106,11 @@ class OffreController extends AbstractController
             $int_value = intval( $x );
         $id = $offre->getProduitid();
         $idp = $id->getProduitid();
+        $iu= $_COOKIE['userID'];
+
         $prix = $offre->getPrix() * $int_value ;
         $sql = " INSERT INTO Panier(produitid,clientid,quantite,prixprod)
-        VALUES ($idp,1,$int_value ,$prix);";
+        VALUES ($idp,$iu,$int_value ,$prix);";
 
         $stmt = $em->getConnection()->prepare($sql);
         $result = $stmt->executeQuery();
