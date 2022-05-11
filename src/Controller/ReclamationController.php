@@ -85,7 +85,7 @@ class ReclamationController extends AbstractController
 
             $user = $entityManager
                 ->getRepository(Utilisateur::class)
-                ->find(12);
+                ->find(1);
             $reclamation->setClientid($user);
             $entityManager->persist($reclamation);
 

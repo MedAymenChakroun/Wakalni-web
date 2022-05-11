@@ -14,13 +14,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ORM\Table(name="reclamation", indexes={@ORM\Index(name="fkclientrec", columns={"clientid"}), @ORM\Index(name="fkcommanderec", columns={"commandeid"})})
  * @ORM\Entity(repositoryClass=ReclamationRepository::class)
- * @Groups("post:read")
  */
 class Reclamation
 {
     /**
      * @var int
-     * @Groups("post:read")
      * @ORM\Column(name="reclamationid", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -29,7 +27,6 @@ class Reclamation
 
     /**
      * @var string
-     * @Groups("post:read")
      * @Assert\NotBlank(message=" sujet doit etre non vide")
     @Assert\Regex(
      *     pattern     = "/^[a-z]+$/i",
@@ -44,7 +41,6 @@ class Reclamation
     /**
      * @var string
      * @Assert\NotBlank(message=" contenu doit etre non vide")
-     * @Groups("post:read")
      *
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=false)
      */
@@ -52,14 +48,12 @@ class Reclamation
 
     /**
      * @var string|null
-     * @Groups("post:read")
      * @ORM\Column(name="etat", type="string", length=30, nullable=true, options={"default"="encoure"})
      */
     private $etat = 'encoure';
 
     /**
      * @var \Commande
-     * @Groups("post:read")
      * @ORM\ManyToOne(targetEntity="Commande")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="commandeid", referencedColumnName="commandeid")
@@ -69,7 +63,6 @@ class Reclamation
 
     /**
      * @var \Utilisateur
-     * @Groups("post:read")
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="clientid", referencedColumnName="id")
