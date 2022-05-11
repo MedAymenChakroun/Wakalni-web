@@ -1,0 +1,11 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}New Leftover{% endblock %}
+
+{% block body %}
+    <h1>Create new Leftovers</h1>
+
+    {{ include('leftovers/_form.html.twig') }}
+
+    <a href="{{ path('app_leftovers_index') }}">Retour liste</a>
+{% endblock %}

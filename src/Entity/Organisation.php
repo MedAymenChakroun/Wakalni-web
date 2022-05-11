@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Organisation
@@ -25,6 +26,12 @@ class Organisation
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=30, nullable=false)
+     * @Assert\NotBlank(message="Must be filled")
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message="{{ value }} doit etre String "
+     * )
      */
     private $nom;
 
@@ -32,6 +39,12 @@ class Organisation
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=30, nullable=false)
+     * @Assert\NotBlank(message="Must be filled")
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message="{{ value }} doit etre String "
+     * )
      */
     private $adresse;
 
@@ -39,6 +52,10 @@ class Organisation
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=30, nullable=false)
+     *   @Assert\NotBlank(message="Must be filled")
+     *   @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 
@@ -46,6 +63,11 @@ class Organisation
      * @var int
      *
      * @ORM\Column(name="numero", type="integer", nullable=false)
+     *  @Assert\NotBlank(message="Must be filled")
+     *        @Assert\Positive(message="Must be positive")
+
+     *
+     * )
      */
     private $numero;
 
@@ -55,7 +77,9 @@ class Organisation
      * @ORM\ManyToOne(targetEntity="Leftovers")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="leftoverid", referencedColumnName="leftoverid")
+
      * })
+     *  @Assert\NotBlank(message="Must be filled")
      */
     private $leftoverid;
 

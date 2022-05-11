@@ -1,0 +1,42 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Organisation index{% endblock %}
+
+{% block body %}
+    <h1>Organisation index</h1>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Numero</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for organisation in organisations %}
+            <tr>
+
+                <td>{{ organisation.nom }}</td>
+                <td>{{ organisation.adresse }}</td>
+                <td>{{ organisation.email }}</td>
+                <td>{{ organisation.numero }}</td>
+                <td>
+                    <a href="{{ path('app_organisation_show', {'organisationid': organisation.organisationid}) }}">detail</a>
+                    <a href="{{ path('app_organisation_edit', {'organisationid': organisation.organisationid}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">table vide</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_organisation_new') }}">Ajouter</a>
+{% endblock %}

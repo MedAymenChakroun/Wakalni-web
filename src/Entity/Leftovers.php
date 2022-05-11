@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Leftovers
@@ -25,6 +26,12 @@ class Leftovers
      * @var string
      *
      * @ORM\Column(name="sujet", type="string", length=30, nullable=false)
+     * @Assert\NotBlank(message="Must be filled")
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message="{{ value }} doit etre String "
+     * )
      */
     private $sujet;
 
@@ -32,6 +39,12 @@ class Leftovers
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=30, nullable=false)
+     *  @Assert\NotBlank(message="Must be filled")
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message="{{ value }} doit etre String "
+     * )
      */
     private $type;
 
@@ -39,6 +52,10 @@ class Leftovers
      * @var int
      *
      * @ORM\Column(name="quantite", type="integer", nullable=false)
+
+     *       @Assert\NotBlank(message="Must be filled")
+     *      @Assert\Positive(message="Must be positive")
+
      */
     private $quantite;
 
@@ -54,10 +71,12 @@ class Leftovers
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="crid", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="chefrestoid", referencedColumnName="id")
      * })
      */
-    private $crid;
+    private $chefrestoid;
+
+
 
     public function getLeftoverid(): ?int
     {
@@ -112,17 +131,23 @@ class Leftovers
         return $this;
     }
 
-    public function getCrid(): ?Utilisateur
+    /**
+     * @return Utilisateur
+     */
+    public function getChefrestoid(): ?Utilisateur
     {
-        return $this->crid;
+        return $this->chefrestoid;
     }
 
-    public function setCrid(?Utilisateur $crid): self
+    /**
+     * @param Utilisateur $chefrestoid
+     */
+    public function setChefrestoid(?Utilisateur $chefrestoid): void
     {
-        $this->crid = $crid;
-
-        return $this;
+        $this->chefrestoid = $chefrestoid;
     }
+
+
 
 
 }

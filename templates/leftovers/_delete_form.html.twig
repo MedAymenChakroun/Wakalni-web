@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_leftovers_delete', {'leftoverid': leftover.leftoverid}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('Delete' ~ leftover.leftoverid) }}">
+    <button class="btn btn-primary">Supprimer</button>
+</form>
