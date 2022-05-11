@@ -88,6 +88,12 @@
     "jms/metadata": {
         "version": "2.6.1"
     },
+    "knplabs/knp-components": {
+        "version": "v3.4.0"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.8.0"
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
@@ -218,6 +224,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "stripe/stripe-php": {
+        "version": "v7.128.0"
     },
     "symfony/apache-pack": {
         "version": "1.0",
