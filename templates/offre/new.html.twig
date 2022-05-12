@@ -1,4 +1,4 @@
-{% extends 'base-front.html.twig' %}
+{% extends 'base-back.html.twig' %}
 {% block title %}Offre index{% endblock %}
 
 {% block body %}
@@ -6,5 +6,5 @@
 
     {{ include('offre/_form.html.twig') }}
 
-    <a href="{{ path('app_offre_index') }}">back to list</a>
+    <a href="{{ path('app_backoffre_index') }}">back to list</a>
 {% endblock %}

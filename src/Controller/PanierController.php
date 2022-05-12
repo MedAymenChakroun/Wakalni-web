@@ -113,12 +113,12 @@ class PanierController extends AbstractController
     {   $timestamp = date('Y-m-d H:i:s');
         $timestampu = date('Y-m-d H:i:s', strtotime("+15 minutes"));
         $timestampp = date('Y-m-d H:i:s', strtotime("+1 hours"));
-        $y= $_COOKIE['panierid'];
+        // $y= $_COOKIE['panierid'];
         $oi= $_COOKIE['userID'];
-        $y_value = intval( $y );
+        // $y_value = intval( $y );
      
              $sql = " INSERT INTO commande(datecreation,dateexpedition,datearrivee,clientid,panierid)
-             VALUES ('$timestamp' ,'$timestampu' ,'$timestampp',$oi,$y_value);";
+             VALUES ('$timestamp' ,'$timestampu' ,'$timestampp',$oi,340);";
              $stmt = $entityManager->getConnection()->prepare($sql);
              $result = $stmt->executeQuery();
             

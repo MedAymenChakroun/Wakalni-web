@@ -68,7 +68,7 @@ class ProduitControllerBack extends AbstractController
         ]);
     }
     /**
-     * @Route("/{produitid}/showw", name="app_produit_showw", methods={"GET", "POST"})
+     * @Route("/{produitid}/showw", name="app_backproduit_showw", methods={"GET", "POST"})
      */
     public function getSqlResult(EntityManagerInterface $em, Produit $produit, EntityManagerInterface $entityManager, Request $request)
     {
