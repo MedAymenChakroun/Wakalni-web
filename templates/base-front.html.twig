@@ -77,13 +77,13 @@
                         </div>
                     </div>
                 </div>
-                <p class="help-text hidden-sm hidden-md" id="helpText">Find any troubles? Drop us an email at <a href="mailto:grow@backtokimi.com" class="text-secondary">grow@backtokimi.com</a> </p>
+                <p class="help-text hidden-sm hidden-md" id="helpText"> </p>
             </div>
             <div class="col-md-4 col-sm-4">
                 <p class="text-center logo-container"><a href="index.html"><img src="images/logo.png" width="100"></a></p>
             </div>
             <div class="col-md-4 less-padding-right">
-                <a href="registerMerchant.html" class="btn pull-right button-green-top-nav">Be Kimi Merchant</a>
+                <a href="{{path('app_logout')}}" class="btn pull-right button-green-top-nav">Logout</a>
             </div>
         </div>
     </div>
@@ -121,8 +121,8 @@
             <ul class="nav navbar-nav">
                 {# <li class="active"><a href="#">Shop</a></li> #}
                 <li><a href="{{ path('app_produit_index') }}">Articles</a></li>
-                <li><a href="merchantGuide.html">Chef Guide</a></li>
-                <li class="dropdown">
+                <li><a href="{{ path('app_offre_index') }}">Offres</a></li>
+                {# <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Location <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="chefDirectory.html">Jakarta Barat</a></li>
@@ -134,12 +134,12 @@
                         <li><a href="chefDirectory.html">Depok</a></li>
                         <li><a href="chefDirectory.html">Tangerang</a></li>
                     </ul>
-                </li>
-                <li><a href="questions.html">FAQs</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="chefDirectory.html">Chef Directory</a></li>
-                <li><a href="login.html">Login / Register</a></li>
+                </li> #}
+                {# <li><a href="questions.html">FAQs</a></li> #}
+                {# <li><a href="about.html">About</a></li> #}
+                {# <li><a href="contact.html">Contact Us</a></li> #}
+                {# <li><a href="chefDirectory.html">Chef Directory</a></li> #}
+                <li><a href="{{ path('app_front') }}">Profile</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
