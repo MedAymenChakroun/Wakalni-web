@@ -13,14 +13,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Psr\Log\LoggerInterface;
 use App\Entity\Panier;
 use App\Form\PanierType;
-
-
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * @Route("/produit")
  */
 class ProduitController extends AbstractController
 {
+
+
     /**
      * @Route("/", name="app_produit_index", methods={"GET"})
      */
