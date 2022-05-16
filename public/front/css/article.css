@@ -107,7 +107,7 @@ a{color:#8b0000}
 }
 
 a.button-green-top-nav{
-    background: #8b0000;
+    background: orange;
     color:white;
     border: none;
     border-radius: 0;
@@ -576,14 +576,12 @@ button, a{
 }
 
 .default-userProductList-CardList-button{
-    background: #8b0000;
+    background: orange;
     font-family: Oswald;
     color: white;
     text-transform: uppercase;
     border-radius: 0;
-    border: 1px solid #8b0000;
-}
-
+    border: 1px solid orange; }
 .default-userProductList-CardList-button:hover{
     background: black;
     color:white;
@@ -595,14 +593,14 @@ button, a{
 }
 
 .button-add-to-bag{
-    background: #8b0000;
+    background: orange;
     color: #ffffff;
     padding: 15px 25px;
     font-size: 16px;
     font-weight: 500;
     border: none;
     border-radius: 2px;
-    border: 1px solid #8b0000;
+    border: 1px solid orange;
 }
 
 .button-add-to-bag:hover{

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Leftovers
@@ -19,6 +20,7 @@ class Leftovers
      * @ORM\Column(name="leftoverid", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("api:leftover")
      */
     private $leftoverid;
 
@@ -32,6 +34,7 @@ class Leftovers
      *     htmlPattern = "^[a-zA-Z]+$",
      *     message="{{ value }} doit etre String "
      * )
+     * @Groups("api:leftover")
      */
     private $sujet;
 
@@ -45,6 +48,7 @@ class Leftovers
      *     htmlPattern = "^[a-zA-Z]+$",
      *     message="{{ value }} doit etre String "
      * )
+     * @Groups("api:leftover")
      */
     private $type;
 
@@ -55,7 +59,7 @@ class Leftovers
 
      *       @Assert\NotBlank(message="Must be filled")
      *      @Assert\Positive(message="Must be positive")
-
+     * @Groups("api:leftover")
      */
     private $quantite;
 
@@ -63,16 +67,14 @@ class Leftovers
      * @var \DateTime
      *
      * @ORM\Column(name="dateexpiration", type="datetime", nullable=false)
+     * @Groups("api:leftover")
      */
     private $dateexpiration;
 
     /**
-     * @var \User
+     * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="chefrestoid", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Utilisateur::class,inversedBy="Leftovers")
      */
     private $chefrestoid;
 
@@ -132,17 +134,17 @@ class Leftovers
     }
 
     /**
-     * @return User
+     * @return Utilisateur
      */
-    public function getChefrestoid(): ?User
+    public function getChefrestoid(): ?Utilisateur
     {
         return $this->chefrestoid;
     }
 
     /**
-     * @param User $chefrestoid
+     * @param Utilisateur $chefrestoid
      */
-    public function setChefrestoid(?User $chefrestoid): void
+    public function setChefrestoid(?Utilisateur $chefrestoid): void
     {
         $this->chefrestoid = $chefrestoid;
     }

@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Review;
+use App\Entity\Reclamation;
+use App\Entity\Livraison;
 use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\Commande;
@@ -283,5 +285,217 @@ public function displaypanier(){
         $serializer = new Serializer([new ObjectNormalizer()]);
         $formatted = $serializer->normalize($commande);
         return new JsonResponse($formatted);
+    }
+       /******************Ajouter Reclamation*****************************************/
+    /**
+     * @Route("/mobile/addreclamation", name="add_reclamation")
+     * @Method("POST")
+     */
+
+    public function ajouterReclamationAction(Request $request)
+    {
+        $reclamation = new Reclamation();
+        $em = $this->getDoctrine()->getManager();
+        $sujet = $request->query->get("sujet");
+        $contenu = $request->query->get("contenu");
+        $etat = $request->query->get("etat");
+        $commandeid = $em->getRepository(Commande::class)->find($request->query->get("commandeid"));
+        $clientid = $em->getRepository(User::class)->find($request->query->get("clientid"));
+
+
+        $reclamation->setSujet($sujet);
+        $reclamation->setContenu($contenu);
+        $reclamation->setEtat($etat);
+        $reclamation->setCommandeid($commandeid);
+        $reclamation->setClientid($clientid);
+
+        $em->persist($reclamation);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+        return new JsonResponse($formatted);
+
+    }
+
+    /******************Supprimer Reclamtion*****************************************/
+
+    /**
+     * @Route("/mobile/deletereclamation", name="delete_reclamation")
+     * @Method("DELETE")
+     */
+
+    public function deleteReclamationAction(Request $request) {
+        $id = $request->get("id");
+
+        $em = $this->getDoctrine()->getManager();
+        $reclamation = $em->getRepository(Reclamation::class)->find($id);
+        if($reclamation!=null ) {
+            $em->remove($reclamation);
+            $em->flush();
+
+            $serialize = new Serializer([new ObjectNormalizer()]);
+            $formatted = $serialize->normalize("Reclamation a ete supprimee avec success.");
+            return new JsonResponse($formatted);
+
+        }
+        return new JsonResponse("id Reclamation invalide.");
+
+
+    }
+
+    /******************Modifier Reclamation*****************************************/
+    /**
+     * @Route("/mobile/updatereclamation", name="update_reclamation")
+     * @Method("PUT")
+     */
+    public function modifierReclamationAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $reclamation = $this->getDoctrine()->getManager()
+            ->getRepository(Reclamation::class)
+            ->find($request->get("id"));
+
+        $reclamation->setSujet($request->get("sujet"));
+        $reclamation->setContenu($request->get("contenu"));
+        $reclamation->setEtat($request->get("etat"));
+        $reclamation->setCommandeid($em->getRepository(Commande::class)->find($request->query->get("commandeid")));
+        $reclamation->setClientid($em->getRepository(User::class)->find($request->query->get("clientid")));
+
+        $em->persist($reclamation);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+        return new JsonResponse("reclamation a ete modifiee avec success.");
+
+    }
+
+
+
+    /******************affichage Reclamation*****************************************/
+
+    /**
+     * @Route("/mobile/displayreclamation", name="display_reclamation")
+     */
+    public function allReclamationAction()
+    {
+
+        $reclamation = $this->getDoctrine()->getManager()->getRepository(Reclamation::class)->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation, null, [AbstractNormalizer::ATTRIBUTES => ['reclamationid','sujet','contenu','etat','commandeid' => ['commandeid'],'clientid' => ['email','id']]]);
+
+        return new JsonResponse($formatted);
+
+    }
+
+    /******************Ajouter Review*****************************************/
+    /**
+     * @Route("/mobile/addreview", name="add_review")
+     * @Method("POST")
+     */
+
+    public function ajouterReviewAction(Request $request)
+    {
+        $review = new Review();
+        $em = $this->getDoctrine()->getManager();
+        $note = $request->query->get("note");
+        $commentaire = $request->query->get("comment");
+        $produitid = $em->getRepository(Produit::class)->find($request->query->get("productid"));
+        $clientid = $em->getRepository(User::class)->find($request->query->get("clientid"));
+
+
+        $review->setNote($note);
+        $review->setCommentaire($commentaire);
+        $review->setProduitid($produitid);
+        $review->setUtilisateurid($clientid);
+
+        $em->persist($review);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($review);
+        return new JsonResponse($formatted);
+
+    }
+
+    /******************Supprimer Review*****************************************/
+
+    /**
+     * @Route("/mobile/deletereview", name="delete_review")
+     * @Method("DELETE")
+     */
+
+    public function deleteReviewAction(Request $request) {
+        $id = $request->get("id");
+
+        $em = $this->getDoctrine()->getManager();
+        $review = $em->getRepository(Review::class)->find($id);
+        if($review!=null ) {
+            $em->remove($review);
+            $em->flush();
+
+            $serialize = new Serializer([new ObjectNormalizer()]);
+            $formatted = $serialize->normalize("Review a ete supprimee avec success.");
+            return new JsonResponse($formatted);
+
+        }
+        return new JsonResponse("id Review invalide.");
+
+
+    }
+
+    /******************Modifier Review*****************************************/
+    /**
+     * @Route("/mobile/updatereview", name="update_review")
+     * @Method("PUT")
+     */
+    public function modifierReviewAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $review = $this->getDoctrine()->getManager()
+            ->getRepository(Review::class)
+            ->find($request->get("id"));
+
+        $review->setNote($request->get("note"));
+        $review->setCommentaire($request->get("comment"));
+        $review->setProduitid($em->getRepository(Produit::class)->find($request->query->get("produitid")));
+        $review->setUtilisateurid($em->getRepository(User::class)->find($request->query->get("clientid")));
+
+        $em->persist($review);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($review);
+        return new JsonResponse("review a ete modifiee avec success.");
+
+    }
+
+
+
+    /******************affichage Review*****************************************/
+
+    /**
+     * @Route("/mobile/displayreview", name="display_review")
+     */
+    public function allReviewAction()
+    {
+
+        $reclamation = $this->getDoctrine()->getManager()->getRepository(Review::class)->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation, null, [AbstractNormalizer::ATTRIBUTES => ['reviewid','note','commentaire','produitid' => ['produitid','nom'] ,'utilisateurid' => ['id','email']]]);
+
+        return new JsonResponse($formatted);
+
+    }
+
+        /******************affichage Livraison*****************************************/
+
+    /**
+     * @Route("/mobile/displaylivraison", name="mobile_display_livraison")
+     */
+    public function allLivraisonAction()
+    {
+
+        $livraison = $this->getDoctrine()->getManager()->getRepository(Livraison::class)->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($livraison, null, [AbstractNormalizer::ATTRIBUTES => ['id','idlivreur' => ['id','firstname','lastname','phonenumber'],'idcommande' => ['id','clientid'=> ['id','email']]]]);
+
+        return new JsonResponse($formatted);
+
     }
 }

@@ -16,12 +16,12 @@
 <table class="table">
     <thead>
     <tr>
-        <th>ID Commande</th>
+        {# <th>ID Commande</th> #}
         <th>Nom Client</th>
         <th>Nom Livreur</th>
         <th>Telephone Client</th>
         <th>Date de creation</th>
-        <th>Date d'expiration</th>
+        {# <th>Date d'expiration</th> #}
         <th>Progres</th>
 
     </tr>
@@ -29,12 +29,12 @@
     <tbody>
     {% for livraison in l %}
         <tr>
-            <td>{{ livraison.idcommande.id}}</td>
+            {# <td>{{ livraison.idcommande.id}}</td> #}
             <td>{{ livraison.idcommande.clientid.firstname }} {{ livraison.idcommande.clientid.lastname }}</td>
             <td>{{ livraison.idlivreur.firstname }} {{ livraison.idlivreur.lastname }}</td>
             <td>{{ livraison.idcommande.clientid.phonenumber }}</td>
             <td>{{ livraison.idcommande.datecreation.format('y-m-d h:m:s') }}</td>
-            <td>{{ livraison.idcommande.dateexpiration.format('y-m-d h:m:s') }}</td>
+            {# <td>{{ livraison.idcommande.dateexpiration.format('y-m-d h:m:s') }}</td> #}
             <td>{% if livraison.progress==1 %} Livraison Complete {% else %} Livraison En cours {% endif %}</td>
             <td>
                 <a href="{{ path('Livraison_edit',{'id':livraison.id}) }}">edit</a>

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Organisation
@@ -19,6 +21,7 @@ class Organisation
      * @ORM\Column(name="organisationid", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("api:organisation")
      */
     private $organisationid;
 
@@ -32,6 +35,7 @@ class Organisation
      *     htmlPattern = "^[a-zA-Z]+$",
      *     message="{{ value }} doit etre String "
      * )
+     * @Groups("api:organisation")
      */
     private $nom;
 
@@ -45,6 +49,7 @@ class Organisation
      *     htmlPattern = "^[a-zA-Z]+$",
      *     message="{{ value }} doit etre String "
      * )
+     * @Groups("api:organisation")
      */
     private $adresse;
 
@@ -56,6 +61,7 @@ class Organisation
      *   @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email."
      * )
+     * @Groups("api:organisation")
      */
     private $email;
 
@@ -68,6 +74,7 @@ class Organisation
 
      *
      * )
+     * @Groups("api:organisation")
      */
     private $numero;
 
