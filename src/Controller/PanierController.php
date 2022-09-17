@@ -125,14 +125,16 @@ class PanierController extends AbstractController
         // $y= $_COOKIE['panierid'];
         $oi= $_COOKIE['userID'];
         // $y_value = intval( $y );
-     
-             $sql = " INSERT INTO commande(datecreation,dateexpedition,datearrivee,clientid,panierid)
-             VALUES ('$timestamp' ,'$timestampu' ,'$timestampp',$oi,340);";
+        $x= $_COOKIE['totalus'];
+        $int_value = intval( $x );
+             $sql = " INSERT INTO commande(datecreation,dateexpedition,datearrivee,clientid,total)
+             VALUES ('$timestamp' ,'$timestampu' ,'$timestampp',$oi,$int_value);";
              $stmt = $entityManager->getConnection()->prepare($sql);
              $result = $stmt->executeQuery();
-            
-        $x= $_COOKIE['total'];
-        $int_value = intval( $x );
+             $sql2="DELETE FROM `panier`";
+             $stmt = $entityManager->getConnection()->prepare($sql2);
+             $result2 = $stmt->executeQuery();
+  
     \Stripe\Stripe::setApiKey('sk_test_51KbYCPCmIH5b4ki3O2XgjSXQB7zwZ8jktL7T7k26PLnliyEvwh5xts9P7o8aX3ndeONnCdwNyuFSgo5hWD31pg1n00o01oKIwU');
     $session = \Stripe\Checkout\Session::create([
         'line_items' => [[

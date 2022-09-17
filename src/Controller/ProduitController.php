@@ -84,7 +84,7 @@ class ProduitController extends AbstractController
 
         $id = $produit->getProduitid();
       
-        $prix = $produit->getPrix() * $int_value ;
+        $prix = $produit->getPrix();
         $sql = " INSERT INTO Panier(produitid,clientid,quantite,prixprod)
         VALUES ($id,$ha,$int_value ,$prix);";
 

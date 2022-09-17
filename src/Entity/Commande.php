@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commande
  *
- * @ORM\Table(name="commande", indexes={@ORM\Index(name="fkpanier", columns={"panierid"}), @ORM\Index(name="fkclient", columns={"clientid"}),@ORM\Index(name="fkrc", columns={"rcid"})})
+ * @ORM\Table(name="commande", indexes={@ORM\Index(name="fkclient", columns={"clientid"}),@ORM\Index(name="fkrc", columns={"rcid"})})
  * @ORM\Entity
  */
 class Commande
@@ -41,18 +41,16 @@ class Commande
      * @ORM\Column(name="datearrivee", type="datetime", nullable=true)
      */
     private $datearrivee;
-
-
-
+    
     /**
-     * @var \Panier
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Panier")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="panierid", referencedColumnName="panierid")
-     * })
+     * @ORM\Column(name="total", type="integer", nullable=false)
      */
-    private $panierid;
+    private $total;
+
+
+
 
     /**
      * @var \User
@@ -109,19 +107,19 @@ class Commande
     }
 
 
-
-
-    public function getPanierid(): ?Panier
+    public function getTotal(): ?int
     {
-        return $this->panierid;
+        return $this->total;
     }
 
-    public function setPanierid(?Panier $panierid): self
+    public function setTotal(?int $total): self
     {
-        $this->panierid = $panierid;
+        $this->total = $total;
 
         return $this;
     }
+
+    
 
     public function getClientid(): ?User
     {
