@@ -270,14 +270,16 @@ public function displaypanier(){
         $datecreation = $request->query->get("datecreation");
         $dateexpedition = $request->query->get("dateexpedition");
         $datearivee = $request->query->get("datearivee");
-        $panierid = $request->query->get("panierid");
+        $total= $request->query->get("total");
+        //$panierid = $request->query->get("panierid");
         $clientid = $request->query->get("clientid");
 
         $em = $this->getDoctrine()->getManager();
         $commande->setDatecreation(new \DateTime($datecreation));
         $commande->setDateexpedition(new \DateTime($dateexpedition));
         $commande->setDatearrivee(new \DateTime($datearivee));
-        $commande->setPanierid($em->getRepository(Panier::class)->find($panierid));
+        $commande->setTotal($total);
+        //$commande->setPanierid($em->getRepository(Panier::class)->find($panierid));
         $commande->setClientid($em->getRepository(User::class)->find($clientid));
 
         $em->persist($commande);
@@ -499,3 +501,6 @@ public function displaypanier(){
 
     }
 }
+
+
+//php bin/console server:run

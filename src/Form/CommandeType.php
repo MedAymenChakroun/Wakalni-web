@@ -16,12 +16,9 @@ class CommandeType extends AbstractType
             ->add('datecreation')
             ->add('dateexpedition')
             ->add('datearrivee')
-            ->add('nomclient')
-            ->add('nomlivreur')
-            ->add('nomresto')
-            ->add('rcid')
             ->add('clientid')
-            ->add('panierid')
+            ->add('total')
+
         ;
     }
 

@@ -125,7 +125,7 @@ class PanierController extends AbstractController
         // $y= $_COOKIE['panierid'];
         $oi= $_COOKIE['userID'];
         // $y_value = intval( $y );
-        $x= $_COOKIE['totalus'];
+        $x= $_COOKIE['total'];
         $int_value = intval( $x );
              $sql = " INSERT INTO commande(datecreation,dateexpedition,datearrivee,clientid,total)
              VALUES ('$timestamp' ,'$timestampu' ,'$timestampp',$oi,$int_value);";

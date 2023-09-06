@@ -1,0 +1,43 @@
+<section class="s-crossfit">
+    <div class="container">
+        <h2>Search Reclamation !!</h2>
+
+        <div class="sidebar-search">
+
+            <div class="input-group custom-search-form">
+
+                <input type="text" id="search" class="form-control" placeholder="Search here">
+            </div>
+            <!-- /input-group -->
+        </div>
+
+        <div class="row" id="search">
+
+        </div>
+        <br><br><br><br>
+    </div>
+</section>
+<script src="{{ asset('assets/js/jquery.js') }}"></script>
+<script
+        src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')}}">
+</script>
+<script>
+$(document).ready(function() {
+    $('#search-button').on('click', function() {
+        var commandeid = $('#commandeid-input').val();
+        var datecreation = $('#datecreation-input').val();
+        var total = $('#total-input').val();
+
+        $.get('/search', {
+            commandeid: commandeid,
+            datecreation: datecreation,
+            total: total
+        }, function(data) {
+            $('#search-results').html(data);
+        });
+    });
+});
+
+</script>
+
+

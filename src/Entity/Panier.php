@@ -64,6 +64,17 @@ class Panier
         return $this->panierid;
     }
 
+
+    public function setPanierid(int $panierid): self
+    {
+        $this->panierid = $panierid;
+
+        return $this;
+    }
+
+
+    
+
     public function getQuantite(): ?int
     {
         return $this->quantite;

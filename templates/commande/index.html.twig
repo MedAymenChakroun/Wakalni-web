@@ -4,30 +4,30 @@
 
 {% block body %}
     <h1>Commande index</h1>
+    <input type="text" id="search-input" placeholder="Search">
+<button id="search-button">Search</button>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Commandeid</th>
-                <th>Datecreation</th>
-                <th>Dateexpedition</th>
-                <th>Datearrivee</th>
-                <th>Nomclient</th>
-                <th>Nomlivreur</th>
-                <th>Nomresto</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<table class="table" id="commande-table">
+    <thead>
+        <tr>
+            <th>Commandeid</th>
+            <th>Datecreation</th>
+            <th>Dateexpedition</th>
+            <th>Datearrivee</th>
+            <th>EmailClient</th>
+            <th>Total</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody
         {% for commande in commandes %}
             <tr>
                 <td>{{ commande.commandeid }}</td>
                 <td>{{ commande.datecreation ? commande.datecreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ commande.dateexpedition ? commande.dateexpedition|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ commande.datearrivee ? commande.datearrivee|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ commande.nomclient }}</td>
-                <td>{{ commande.nomlivreur }}</td>
-                <td>{{ commande.nomresto }}</td>
+                <td>{{ commande.clientid.firstname }}</td>
+                <td>{{ commande.total }}</td>
                 <td>
                     <a href="{{ path('app_commande_show', {'commandeid': commande.commandeid}) }}">show</a>
                     <a href="{{ path('app_commande_edit', {'commandeid': commande.commandeid}) }}">edit</a>
@@ -42,4 +42,58 @@
     </table>
 
     <a href="{{ path('app_commande_new') }}">Create new</a>
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+
+ <script>
+$(document).ready(function() {
+    $('#search-button').on('click', function() {
+        var searchValue = $('#search-input').val(); // Get the search input value
+
+        $.get('{{ path('app_commande_search') }}', {
+            search: searchValue
+        }, function(data) {
+            // Handle the response and populate the table rows
+            var tableBody = $('#commande-table tbody');
+
+            // Remove the existing rows except for the header row
+            tableBody.find('tr:not(:first)').remove();
+
+            if (data.length > 0) {
+                data.forEach(function(result) {
+                    
+                    var row = $('<tr>');
+                    row.append($('<td>').text(result.commandeid));
+
+                    var dateCreationText = '';
+                    if (typeof result.datecreation === 'string') {
+                        dateCreationText = result.datecreation; 
+                    } else if (typeof result.datecreation === 'object' && result.datecreation !== null) {
+                        dateCreationText = new Date(result.datecreation.date).toLocaleString();
+                    }
+                    row.append($('<td>').text(dateCreationText));
+
+                    row.append($('<td>').text(result.total));
+
+                    var clientName = '';
+                    if (result.clientid && typeof result.clientid === 'object') {
+                        clientName = result.clientid.firstname;
+                    }
+                    row.append($('<td>').text(clientName));
+
+                    tableBody.append(row);
+                });
+            } else {
+                // Display a message if there are no results
+                tableBody.append($('<tr>').append($('<td colspan="4">').text('No records found')));
+            }
+        });
+    });
+});
+
+</script>
+
+
 {% endblock %}
+
+

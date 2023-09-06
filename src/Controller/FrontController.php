@@ -67,7 +67,7 @@ class FrontController extends AbstractController
     public function commander(): Response
     {
         $commande = $this->getDoctrine()->getManager()->getRepository(Commande::class)->findAll();
-        return $this ->render('front/livrer.html.twig',[
+        return $this ->render('commande/index.html.twig',[
             'c'=>$commande
         ]);
     }
